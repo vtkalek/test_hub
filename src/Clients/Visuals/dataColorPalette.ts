@@ -156,7 +156,7 @@ module powerbi.visuals {
             // Third loop
             { value: '#168980' },
             { value: '#293537' },
-            { value: '#BB4A4A' },
+            { value: '#BBFA4A' },
             { value: '#B59525' },
             { value: '#475052' },
             { value: '#6A9FB0' },

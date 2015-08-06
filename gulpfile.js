@@ -375,7 +375,7 @@ gulp.task('pull_rebase', function(){
 
 
 gulp.task('git_update_brunch', function() {
-	runSequence('checkout', 'git_clean', 'pull_rebase');
+	runSequence('pull_rebase','typedoc','deploy');
 });
 
 //-------------------------------- Git tasks END -------------------------------------

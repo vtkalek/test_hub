@@ -314,7 +314,7 @@ gulp.task('build_dtss', function() {
 		    target:'ES5'
 	      }));
 
-  return tsResult.dts.pipe(concat('powerbi-visuals.d.ts')).pipe(gulp.dest('src/Clients/build'));
+  tsResult.dts.pipe(concat('powerbi-visuals.d.ts')).pipe(gulp.dest('src/Clients/build'));
 });
 
 
@@ -334,8 +334,7 @@ gulp.task("createdocs", function() {
             name: "PowerBI-Visuals", 
             ignoreCompilerErrors: true,
             version: true,
-        }))
-    ;
+        }));
 });
 
 gulp.task('typedoc', function() {

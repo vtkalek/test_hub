@@ -343,7 +343,7 @@ gulp.task('typedoc', function() {
 });
 
 //--------------------------------  TYPE DOC END -------------------------------------
-//715a7a52eb8a7a02e1f7288b8d8d0dc271643b02
+//
 //-------------------------------- Push deploy to gh-pages ---------------------------
 
 gulp.task('deploy', function () {

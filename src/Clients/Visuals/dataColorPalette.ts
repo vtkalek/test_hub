@@ -158,7 +158,7 @@ module powerbi.visuals {
             { value: '#293537' },
             { value: '#BBFA4A' },
             { value: '#B59525' },
-            { value: '#475052' },
+            { value: '#FFFFFF' },
             { value: '#6A9FB0' },
             { value: '#BD7150' },
             { value: '#7B4F71' },

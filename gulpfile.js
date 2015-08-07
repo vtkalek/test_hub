@@ -50,7 +50,7 @@ gulp.task('tslint', function(){
 
 gulp.task('build_visuals_projects', function() {
 
-	var tsResult = gulp.src(['src/Clients/VisualsCommon/**/*.ts','src/Clients/VisualsData/**/*.ts','src/Clients/Visuals/**/*.ts','!src/Clients/Visuals*/obj/*.*','!src/Clients/Visuals*/**/*.obj.ts'])
+	var tsResult = gulp.src(['src/Clients/VisualsCommon/**/*.ts','src/Clients/VisualsData/**/*.ts','src/Clients/Visuals/**/*.ts','!src/Clients/Visuals*/obj/*.*','!src/Clients/Visuals*/**/*.obj.ts', '!node_modules/**/*.ts'])
 	    .pipe(sourcemaps.init())
 	    .pipe(ts({
 	       sortOutput: true,

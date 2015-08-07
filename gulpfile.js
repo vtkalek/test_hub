@@ -56,6 +56,7 @@ gulp.task('build_visuals_projects', function() {
 	       sortOutput: true,
 	       typescript: require('typescript'),
 	        declarationFiles: true,
+	        noExternalResolve: false,
 		    target:'ES5'
 	      }));
 

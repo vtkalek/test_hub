@@ -54,6 +54,7 @@ gulp.task('build_visuals_projects', function() {
 	    .pipe(sourcemaps.init())
 	    .pipe(ts({
 	       sortOutput: true,
+	       module: 'commonjs',
 	       typescript: require('typescript'),
 	        declarationFiles: true,
 	        noExternalResolve: false,

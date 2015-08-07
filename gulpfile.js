@@ -43,7 +43,7 @@ var run = require('gulp-run');
 const tslint = require('gulp-tslint');
 
 gulp.task('tslint', function(){
-      return gulp.src(['src/Clients/VisualsCommon/**/*.ts','src/Clients/VisualsData/**/*.ts','src/Clients/Visuals/**/*.ts','!src/Clients/Visuals*/obj/*.*','!src/Clients/Visuals/**/*.obj.ts'])
+      gulp.src(['src/Clients/VisualsCommon/**/*.ts','src/Clients/VisualsData/**/*.ts','src/Clients/Visuals/**/*.ts','!src/Clients/Visuals*/obj/*.*','!src/Clients/Visuals/**/*.obj.ts'])
         .pipe(tslint())
         .pipe(tslint.report('verbose'));
 });
@@ -60,7 +60,7 @@ gulp.task('build_visuals_projects', function() {
 		    target:'ES5'
 	      }));
 
-  return merge([
+  merge([
 	    tsResult.js.pipe(concat('powerbi-visuals.js')).pipe(sourcemaps.write({ sourceRoot: '../'})).pipe(gulp.dest('src/Clients/PowerBIVisualsPlayground'))
 	    .pipe(uglify('powerbi-visuals.min.js')).pipe(gulp.dest('src/Clients/PowerBIVisualsPlayground')),
 	    tsResult.dts.pipe(concat('powerbi-visuals.d.ts')).pipe(gulp.dest('src/Clients/PowerBIVisualsPlayground'))
@@ -68,7 +68,7 @@ gulp.task('build_visuals_projects', function() {
 });
 
 gulp.task('combine_js', function() {
-	return gulp.src(['src/Clients/Externals/ThirdPartyIP/D3/*.min.js',
+gulp.src(['src/Clients/Externals/ThirdPartyIP/D3/*.min.js',
 'src/Clients/Externals/ThirdPartyIP/GlobalizeJS/globalize.min.js', 
 'src/Clients/Externals/ThirdPartyIP/GlobalizeJS/globalize.cultures.min.js', 
 'src/Clients/Externals/ThirdPartyIP/JQuery/**/*.min.js',
@@ -77,14 +77,14 @@ gulp.task('combine_js', function() {
 });
 
 gulp.task('combine_js_all_min', function() {
-	return gulp.src(['src/Clients/PowerBIVisualsPlayground/externals.min.js',
+ gulp.src(['src/Clients/PowerBIVisualsPlayground/externals.min.js',
 'src/Clients/PowerBIVisualsPlayground/powerbi-visuals.min.js'])
 .pipe(concat('powerbi-visuals.all.min.js')).pipe(gulp.dest('src/Clients/PowerBIVisualsPlayground'));
 });
 
 
 gulp.task('combine_dts', function() {
-	return gulp.src(['src/Clients/Typedefs/d3/*.d.ts',
+gulp.src(['src/Clients/Typedefs/d3/*.d.ts',
 'src/Clients/Typedefs/globalize/*.d.ts',
 'src/Clients/Typedefs/jasmine/*.d.ts',
 'src/Clients/Typedefs/jquery/*.d.ts',
@@ -107,7 +107,7 @@ gulp.task('build_app', function() {
 		    target:'ES5'
 	      }));
 
-  return merge([
+merge([
     tsResult.js.pipe(gulp.dest('src/Clients/PowerBIVisualsPlayground'))
    
     ]);
@@ -118,11 +118,11 @@ gulp.task('sprite', function () {
     imgName: 'images/visuals.sprites.png',
     cssName: 'styles/sprites.less'
   }));
-  return spriteData.pipe(gulp.dest('src/Clients/Visuals/'));
+  spriteData.pipe(gulp.dest('src/Clients/Visuals/'));
 });
 
 gulp.task('build_visuals_less', function () {
-  return gulp.src('src/Clients/Visuals/styles/visuals.less')
+ gulp.src('src/Clients/Visuals/styles/visuals.less')
     .pipe(less())
     .pipe(minifyCSS())
     .pipe(rename('visuals.min.css'))

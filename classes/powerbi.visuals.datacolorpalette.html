@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>D3ColorScale | PowerBI-Visuals</title>
+	<title>DataColorPalette | PowerBI-Visuals</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -63,10 +63,10 @@
 					<a href="../modules/powerbi.visuals.html">visuals</a>
 				</li>
 				<li>
-					<a href="powerbi.visuals.d3colorscale.html">D3ColorScale</a>
+					<a href="powerbi.visuals.datacolorpalette.html">DataColorPalette</a>
 				</li>
 			</ul>
-			<h1>Class D3ColorScale</h1>
+			<h1>Class DataColorPalette</h1>
 		</div>
 	</div>
 </header>
@@ -77,14 +77,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">D3ColorScale</span>
+						<span class="target">DataColorPalette</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><a href="../interfaces/powerbi.icolorscale.html" class="tsd-signature-type">IColorScale</a></li>
+					<li><a href="../interfaces/powerbi.idatacolorpalette.html" class="tsd-signature-type">IDataColorPalette</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -94,22 +94,27 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="powerbi.visuals.d3colorscale.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="powerbi.visuals.datacolorpalette.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="powerbi.visuals.d3colorscale.html#scale" class="tsd-kind-icon">scale</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="powerbi.visuals.datacolorpalette.html#basepickercolors" class="tsd-kind-icon">base<wbr>Picker<wbr>Colors</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="powerbi.visuals.datacolorpalette.html#colors" class="tsd-kind-icon">colors</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="powerbi.visuals.datacolorpalette.html#scales" class="tsd-kind-icon">scales</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="powerbi.visuals.datacolorpalette.html#sentimentcolors" class="tsd-kind-icon">sentiment<wbr>Colors</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="powerbi.visuals.d3colorscale.html#clearandrotatescale" class="tsd-kind-icon">clear<wbr>And<wbr>Rotate<wbr>Scale</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="powerbi.visuals.d3colorscale.html#clone" class="tsd-kind-icon">clone</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="powerbi.visuals.d3colorscale.html#getcolor" class="tsd-kind-icon">get<wbr>Color</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="powerbi.visuals.d3colorscale.html#createfromcolors" class="tsd-kind-icon">create<wbr>From<wbr>Colors</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="powerbi.visuals.datacolorpalette.html#createscale" class="tsd-kind-icon">create<wbr>Scale</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="powerbi.visuals.datacolorpalette.html#getbasepickercolors" class="tsd-kind-icon">get<wbr>Base<wbr>Picker<wbr>Colors</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="powerbi.visuals.datacolorpalette.html#getcolorbyindex" class="tsd-kind-icon">get<wbr>Color<wbr>ByIndex</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="powerbi.visuals.datacolorpalette.html#getcolorscalebykey" class="tsd-kind-icon">get<wbr>Color<wbr>Scale<wbr>ByKey</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="powerbi.visuals.datacolorpalette.html#getnewcolorscale" class="tsd-kind-icon">get<wbr>New<wbr>Color<wbr>Scale</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="powerbi.visuals.datacolorpalette.html#getsentimentcolors" class="tsd-kind-icon">get<wbr>Sentiment<wbr>Colors</a></li>
 							</ul>
 						</section>
 					</div>
@@ -121,22 +126,27 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>D3Color<wbr>Scale<span class="tsd-signature-symbol">(</span>scale<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">OrdinalScale</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="powerbi.visuals.d3colorscale.html" class="tsd-signature-type">D3ColorScale</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Data<wbr>Color<wbr>Palette<span class="tsd-signature-symbol">(</span>colors<span class="tsd-signature-symbol">?: </span><a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="powerbi.visuals.datacolorpalette.html" class="tsd-signature-type">DataColorPalette</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L100">dataColorPalette.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L56">dataColorPalette.ts:56</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a DataColorPalette using the given theme, or the default theme.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>scale: <span class="tsd-signature-type">OrdinalScale</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> colors: <a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="powerbi.visuals.d3colorscale.html" class="tsd-signature-type">D3ColorScale</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="powerbi.visuals.datacolorpalette.html" class="tsd-signature-type">DataColorPalette</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -144,48 +154,74 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="scale" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> scale</h3>
-					<div class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OrdinalScale</span></div>
+					<a name="basepickercolors" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> base<wbr>Picker<wbr>Colors</h3>
+					<div class="tsd-signature tsd-kind-icon">base<wbr>Picker<wbr>Colors<span class="tsd-signature-symbol">:</span> <a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L100">dataColorPalette.ts:100</a></li>
+							<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L45">dataColorPalette.ts:45</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="colors" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> colors</h3>
+					<div class="tsd-signature tsd-kind-icon">colors<span class="tsd-signature-symbol">:</span> <a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L31">dataColorPalette.ts:31</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="scales" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> scales</h3>
+					<div class="tsd-signature tsd-kind-icon">scales<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L30">dataColorPalette.ts:30</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>index: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="../interfaces/powerbi.icolorscale.html" class="tsd-signature-type">IColorScale</a></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="sentimentcolors" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> sentiment<wbr>Colors</h3>
+					<div class="tsd-signature tsd-kind-icon">sentiment<wbr>Colors<span class="tsd-signature-symbol">:</span> <a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L38">dataColorPalette.ts:38</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Colors used for sentiment visuals, e.g. KPI, Gauge. Since this is only a temporary implementation which will
+								eventually be superseded by conditional formatting, we don&#39;t declare them as part of the theme and instead
+							use a hardcoded color scheme here until conditional formatting is ready.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="clearandrotatescale" class="tsd-anchor"></a>
-					<h3>clear<wbr>And<wbr>Rotate<wbr>Scale</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">clear<wbr>And<wbr>Rotate<wbr>Scale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="createscale" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Scale</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Scale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/powerbi.icolorscale.html" class="tsd-signature-type">IColorScale</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/powerbi.icolorscale.html">IColorScale</a>.<a href="../interfaces/powerbi.icolorscale.html#clearandrotatescale">clearAndRotateScale</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L110">dataColorPalette.ts:110</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="clone" class="tsd-anchor"></a>
-					<h3>clone</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">clone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/powerbi.icolorscale.html" class="tsd-signature-type">IColorScale</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/powerbi.icolorscale.html">IColorScale</a>.<a href="../interfaces/powerbi.icolorscale.html#clone">clone</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L116">dataColorPalette.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L94">dataColorPalette.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/powerbi.icolorscale.html" class="tsd-signature-type">IColorScale</a></h4>
@@ -193,49 +229,104 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getcolor" class="tsd-anchor"></a>
-					<h3>get<wbr>Color</h3>
+					<a name="getbasepickercolors" class="tsd-anchor"></a>
+					<h3>get<wbr>Base<wbr>Picker<wbr>Colors</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Color<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Base<wbr>Picker<wbr>Colors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Implementation of <a href="../interfaces/powerbi.icolorscale.html">IColorScale</a>.<a href="../interfaces/powerbi.icolorscale.html#getcolor">getColor</a></p>
+								<p>Implementation of <a href="../interfaces/powerbi.idatacolorpalette.html">IDataColorPalette</a>.<a href="../interfaces/powerbi.idatacolorpalette.html#getbasepickercolors">getBasePickerColors</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L106">dataColorPalette.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L90">dataColorPalette.ts:90</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getcolorbyindex" class="tsd-anchor"></a>
+					<h3>get<wbr>Color<wbr>ByIndex</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Color<wbr>ByIndex<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/powerbi.idatacolorpalette.html">IDataColorPalette</a>.<a href="../interfaces/powerbi.idatacolorpalette.html#getcolorbyindex">getColorByIndex</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L81">dataColorPalette.ts:81</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>key: <span class="tsd-signature-type">any</span></h5>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="createfromcolors" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> create<wbr>From<wbr>Colors</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>From<wbr>Colors<span class="tsd-signature-symbol">(</span>colors<span class="tsd-signature-symbol">: </span><a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="powerbi.visuals.d3colorscale.html" class="tsd-signature-type">D3ColorScale</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getcolorscalebykey" class="tsd-anchor"></a>
+					<h3>get<wbr>Color<wbr>Scale<wbr>ByKey</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Color<wbr>Scale<wbr>ByKey<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/powerbi.icolorscale.html" class="tsd-signature-type">IColorScale</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/powerbi.idatacolorpalette.html">IDataColorPalette</a>.<a href="../interfaces/powerbi.idatacolorpalette.html#getcolorscalebykey">getColorScaleByKey</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L120">dataColorPalette.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L67">dataColorPalette.ts:67</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>colors: <a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="powerbi.visuals.d3colorscale.html" class="tsd-signature-type">D3ColorScale</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/powerbi.icolorscale.html" class="tsd-signature-type">IColorScale</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getnewcolorscale" class="tsd-anchor"></a>
+					<h3>get<wbr>New<wbr>Color<wbr>Scale</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>New<wbr>Color<wbr>Scale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/powerbi.icolorscale.html" class="tsd-signature-type">IColorScale</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/powerbi.idatacolorpalette.html">IDataColorPalette</a>.<a href="../interfaces/powerbi.idatacolorpalette.html#getnewcolorscale">getNewColorScale</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L77">dataColorPalette.ts:77</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/powerbi.icolorscale.html" class="tsd-signature-type">IColorScale</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsentimentcolors" class="tsd-anchor"></a>
+					<h3>get<wbr>Sentiment<wbr>Colors</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Sentiment<wbr>Colors<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/powerbi.idatacolorpalette.html">IDataColorPalette</a>.<a href="../interfaces/powerbi.idatacolorpalette.html#getsentimentcolors">getSentimentColors</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/vtkalek/test_hub/blob/master/src/Clients/Visuals/dataColorPalette.ts#L86">dataColorPalette.ts:86</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/powerbi.icolorinfo.html" class="tsd-signature-type">IColorInfo</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -351,25 +442,40 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="powerbi.visuals.d3colorscale.html" class="tsd-kind-icon">D3<wbr>Color<wbr>Scale</a>
+						<a href="powerbi.visuals.datacolorpalette.html" class="tsd-kind-icon">Data<wbr>Color<wbr>Palette</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="powerbi.visuals.d3colorscale.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="powerbi.visuals.datacolorpalette.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="powerbi.visuals.d3colorscale.html#scale" class="tsd-kind-icon">scale</a>
+								<a href="powerbi.visuals.datacolorpalette.html#basepickercolors" class="tsd-kind-icon">base<wbr>Picker<wbr>Colors</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="powerbi.visuals.datacolorpalette.html#colors" class="tsd-kind-icon">colors</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="powerbi.visuals.datacolorpalette.html#scales" class="tsd-kind-icon">scales</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="powerbi.visuals.datacolorpalette.html#sentimentcolors" class="tsd-kind-icon">sentiment<wbr>Colors</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="powerbi.visuals.datacolorpalette.html#createscale" class="tsd-kind-icon">create<wbr>Scale</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="powerbi.visuals.d3colorscale.html#clearandrotatescale" class="tsd-kind-icon">clear<wbr>And<wbr>Rotate<wbr>Scale</a>
+								<a href="powerbi.visuals.datacolorpalette.html#getbasepickercolors" class="tsd-kind-icon">get<wbr>Base<wbr>Picker<wbr>Colors</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="powerbi.visuals.d3colorscale.html#clone" class="tsd-kind-icon">clone</a>
+								<a href="powerbi.visuals.datacolorpalette.html#getcolorbyindex" class="tsd-kind-icon">get<wbr>Color<wbr>ByIndex</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="powerbi.visuals.d3colorscale.html#getcolor" class="tsd-kind-icon">get<wbr>Color</a>
+								<a href="powerbi.visuals.datacolorpalette.html#getcolorscalebykey" class="tsd-kind-icon">get<wbr>Color<wbr>Scale<wbr>ByKey</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="powerbi.visuals.d3colorscale.html#createfromcolors" class="tsd-kind-icon">create<wbr>From<wbr>Colors</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="powerbi.visuals.datacolorpalette.html#getnewcolorscale" class="tsd-kind-icon">get<wbr>New<wbr>Color<wbr>Scale</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="powerbi.visuals.datacolorpalette.html#getsentimentcolors" class="tsd-kind-icon">get<wbr>Sentiment<wbr>Colors</a>
 							</li>
 						</ul>
 					</li>

@@ -24,7 +24,6 @@
  *  THE SOFTWARE.
  */
 
-/// <reference path="../Typedefs/microsoftMaps/Microsoft.Maps.d.ts" />
 /// <reference path="../Typedefs/jquery/jquery.d.ts" /> 
 
 module powerbi.visuals {

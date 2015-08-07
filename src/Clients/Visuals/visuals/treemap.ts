@@ -23,7 +23,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-
+///<reference path="../../Typedefs/d3/d3.d.ts" />
 module powerbi.visuals {
     import CssConstants = jsCommon.CssConstants;
     import StringExtensions = jsCommon.StringExtensions;

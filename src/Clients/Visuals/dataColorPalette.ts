@@ -38,7 +38,7 @@ module powerbi.visuals {
         private sentimentColors: IColorInfo[] = [
             { value: '#C0433A' }, // Red
             { value: '#555555' }, // Yellow
-            { value: '#FFFFFF' }, // Green
+            { value: '#F22222' }, // Green
         ];
 
         // Hardcoded values for Color Picker.

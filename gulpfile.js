@@ -356,20 +356,20 @@ gulp.task('deploy', function () {
 //-------------------------------- Git tasks -----------------------------------------
 // Create and switch to a git branch 
 gulp.task('checkout', function(){
-  git.checkout('master', function (err) {
+ return  git.checkout('master', function (err) {
     if (err) throw err;
   });
 });
 
 gulp.task('git_clean', function () {
- run('git clean -fdx').exec()  // clean brunch from all generated files
+ return run('git clean -fdx').exec()  // clean brunch from all generated files
 })
 
 // Run git pull 
 // remote is the remote repo 
 // branch is the remote branch to pull from 
 gulp.task('pull_rebase', function(){
-  git.pull('origin', 'master', {args: '--rebase'}, function (err) {
+ return  git.pull('origin', 'master', {args: '--rebase'}, function (err) {
     if (err) throw err;
   });
 });

@@ -131,7 +131,7 @@ gulp.task('build_visuals_less', function () {
 
 
 gulp.task('build', function() {
-	runSequence('tslint', 'build_visuals_projects', 'combine_js', 'combine_js_all_min', 'combine_dts', 'build_app', 'sprite', 'build_visuals_less');
+	runSequence('tslint','combine_dts', 'build_visuals_projects', 'combine_js', 'combine_js_all_min',  'build_app', 'sprite', 'build_visuals_less');
 });
 
 

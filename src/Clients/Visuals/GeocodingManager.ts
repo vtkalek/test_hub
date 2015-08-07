@@ -23,8 +23,9 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-/// <reference path="../Typedefs/jquery/jquery.d.ts" />
+
 /// <reference path="../Typedefs/microsoftMaps/Microsoft.Maps.d.ts" />
+/// <reference path="../jquery/jquery.d.ts" />
 
 module powerbi.visuals {
     export interface IPoint {

@@ -23,7 +23,6 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
-///<reference path="typedefs/typedefs.ts" />
 
 module powerbi.visuals {
     export interface IPoint {

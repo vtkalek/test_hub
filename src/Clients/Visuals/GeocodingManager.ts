@@ -63,6 +63,9 @@ module powerbi.visuals {
         }
     }
 
+    export interface SomethingNew(): boolean{
+        return true;
+    }
     export interface I2DTransformMatrix {
         m00: number;
         m01: number;

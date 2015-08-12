@@ -382,7 +382,7 @@ gulp.task('pull_rebase', function(){
 
 
 gulp.task('git_update_gh_pages', function() {
-	runSequence('pull_rebase','typedoc','deploy');
+	runSequence('pull_rebase','build_dtss', 'createdocs','deploy');
 });
 
 //-------------------------------- Git tasks END -------------------------------------

@@ -315,13 +315,15 @@ gulp.task('build_dtss', function() {
 	        declarationFiles: true,
 		    target:'ES5'
 	      }));
-
+return merge([
   tsResult.dts.pipe(concat('powerbi-visuals.d.ts')).pipe(gulp.dest('src/Clients/build'));
+  ]);
 });
 
 
 gulp.task("createdocs", function() {
-    return gulp
+	return merge([
+    gulp
         .src(['src/Clients/build/powerbi-visuals.d.ts','src/Clients/Visuals/**/*.ts','!src/Clients/Visuals*/obj/*.*','!src/Clients/Visuals*/**/*.obj.ts'])
         .pipe(typedoc({
             // TypeScript options (see typescript docs) 
@@ -336,7 +338,8 @@ gulp.task("createdocs", function() {
             name: "PowerBI-Visuals", 
             ignoreCompilerErrors: true,
             version: true,
-        }));
+        }))
+        ]);
 });
 
 gulp.task('typedoc', function() {
@@ -348,8 +351,9 @@ gulp.task('typedoc', function() {
 //-------------------------------- Push deploy to gh-pages ---------------------------
 
 gulp.task('deploy', function () {
-  return gulp.src("./docs/**/*")
-    .pipe(deploy())
+	return merge([
+  gulp.src("./docs/**/*")
+    .pipe(deploy()) ]);
 });
 //-------------------------------- Push deploy to gh-pages END -----------------------
 
@@ -369,9 +373,11 @@ gulp.task('git_clean', function () {
 // remote is the remote repo 
 // branch is the remote branch to pull from 
 gulp.task('pull_rebase', function(){
- return  git.pull('origin', 'master', {args: '--rebase'}, function (err) {
+	return merge([
+ git.pull('origin', 'master', {args: '--rebase'}, function (err) {
     if (err) throw err;
-  });
+  })
+  ]);
 });
 
 

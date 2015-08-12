@@ -373,11 +373,9 @@ gulp.task('git_clean', function () {
 // remote is the remote repo 
 // branch is the remote branch to pull from 
 gulp.task('pull_rebase', function(){
-	return merge([
  git.pull('origin', 'master', {args: '--rebase'}, function (err) {
     if (err) throw err;
-  })
-  ]);
+  });
 });
 
 

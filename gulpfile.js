@@ -316,7 +316,7 @@ gulp.task('build_dtss', function() {
 		    target:'ES5'
 	      }));
 return merge([
-  tsResult.dts.pipe(concat('powerbi-visuals.d.ts')).pipe(gulp.dest('src/Clients/build'));
+  tsResult.dts.pipe(concat('powerbi-visuals.d.ts')).pipe(gulp.dest('src/Clients/build'))
   ]);
 });
 

@@ -1,0 +1,2 @@
+cd .publish
+git push

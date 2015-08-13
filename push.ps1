@@ -7,7 +7,7 @@ git config remote.origin.url https://$($lname):$($lbigdata)@github.com/$($lname)
 git config  user.email "v-tkalek@microsoft.com"
 git config  user.name "vtkalek"
 git config --local core.ignorecase false
-git config --local core.autocrlf true
+git config --local core.autocrlf false
 git config --local push.default simple
 git config --list
 echo "commit"

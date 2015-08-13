@@ -5,4 +5,7 @@ dir
 git config push.default matching
 git config remote.origin.url https://$($lname):$($lbigdata)@github.com/$($lname)/test_hub
 git config --list
+echo "commit"
+git commit
+echo "push"
 git push

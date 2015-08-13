@@ -11,6 +11,6 @@ git config --local core.autocrlf false
 git config --local push.default simple
 git config --list
 echo "commit"
-git commit
+git commit >> out.txt
 echo "push"
 git push

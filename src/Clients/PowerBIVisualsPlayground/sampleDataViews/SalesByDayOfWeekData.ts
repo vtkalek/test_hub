@@ -29,6 +29,8 @@
 module powerbi.visuals.sampleDataViews {
 
     import DataViewTransform = powerbi.data.DataViewTransform;
+    import ValueType = powerbi.ValueType;
+    import PrimitiveType = powerbi.PrimitiveType;
     
     export class SalesByDayOfWeekData extends SampleDataViews implements ISampleDataViewsMethods {
 
@@ -47,6 +49,7 @@ module powerbi.visuals.sampleDataViews {
             [123455.43, 40566.43, 200457.78, 5000.49, 320000.57, 450000.34]
         ];
 
+
         private sampleMin1: number = 30000;
         private sampleMax1: number = 1000000;
 
@@ -57,6 +60,7 @@ module powerbi.visuals.sampleDataViews {
 
         private sampleMin2: number = 10;
         private sampleMax2: number = 45;
+
 
         public getDataViews(): DataView[] {
             //first dataView - Sales by day of week
@@ -113,6 +117,7 @@ module powerbi.visuals.sampleDataViews {
                 return [dayName, columns[0].values[idx], columns[1].values[idx]];
             });
             //first dataView - Sales by day of week END
+
 
             //second dataView - Temperature by day of week
             var fieldExprTemp = powerbi.data.SQExprBuilder.fieldDef({ schema: 's', entity: "table2", column: "day of week" });

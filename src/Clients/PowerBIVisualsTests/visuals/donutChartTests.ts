@@ -306,8 +306,8 @@ module powerbitests {
                             expect(dataLabelsWidth).toEqual(categoryLabelsWidth);
                             expect(noLabelsWidth).toBeGreaterThan(categoryLabelsWidth);
                             done();
-                        }, DefaultWaitForRender);
-                    }, DefaultWaitForRender);
+                        }, DefaultWaitForRender)
+                    }, DefaultWaitForRender)
                 }, DefaultWaitForRender);
             });
 

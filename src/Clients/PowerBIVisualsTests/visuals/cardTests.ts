@@ -341,6 +341,9 @@ module powerbitests {
 
             setTimeout(() => {
                 expect($('.mainText').first().text()).toBe('6/20/2015');
+                var transform = SVGUtil.parseTranslateTransform($('.mainText').first().attr('transform'));
+                expect(transform.x).toBe('150');
+                expect(transform.y).toBe('130');
                 done();
             }, DefaultWaitForRender);
         });
@@ -565,6 +568,7 @@ module powerbitests {
                 groups: [],
                 measures: [0],
             };
+
 
             v.onDataChanged({
                 dataViews: [{

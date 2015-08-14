@@ -584,7 +584,7 @@ module powerbitests {
                     height: element.height(),
                     width: element.width()
                 }
-            };
+            }
         }
     });
 }

@@ -28,6 +28,10 @@
 
 module powerbi.visuals.sampleDataViews {
 
+    import DataViewTransform = powerbi.data.DataViewTransform;
+    import ValueType = powerbi.ValueType;
+    import PrimitiveType = powerbi.PrimitiveType;
+    
     export class SimpleMatrixData extends SampleDataViews implements ISampleDataViewsMethods {
 
         public name: string = "SimpleMatrixData";
@@ -39,6 +43,7 @@ module powerbi.visuals.sampleDataViews {
         public getDataViews(): DataView[] {
             var dataTypeNumber = ValueType.fromPrimitiveTypeAndCategory(PrimitiveType.Double);
             var dataTypeString = ValueType.fromPrimitiveTypeAndCategory(PrimitiveType.Text);
+            var dataTypeWebUrl = ValueType.fromPrimitiveTypeAndCategory(PrimitiveType.Text, 'WebUrl');
 
             var measureSource1: DataViewMetadataColumn = { displayName: 'measure1', type: dataTypeNumber, isMeasure: true, index: 3, objects: { general: { formatString: '#.0' } } };
             var measureSource2: DataViewMetadataColumn = { displayName: 'measure2', type: dataTypeNumber, isMeasure: true, index: 4, objects: { general: { formatString: '#.00' } } };

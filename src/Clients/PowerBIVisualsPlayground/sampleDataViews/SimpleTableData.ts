@@ -28,6 +28,7 @@
 
 module powerbi.visuals.sampleDataViews {
 
+    import DataViewTransform = powerbi.data.DataViewTransform;
     import ValueType = powerbi.ValueType;
     import PrimitiveType = powerbi.PrimitiveType;
     
@@ -42,10 +43,13 @@ module powerbi.visuals.sampleDataViews {
         public getDataViews(): DataView[] {
             var dataTypeNumber = ValueType.fromPrimitiveTypeAndCategory(PrimitiveType.Double);
             var dataTypeString = ValueType.fromPrimitiveTypeAndCategory(PrimitiveType.Text);
+            var dataTypeWebUrl = ValueType.fromPrimitiveTypeAndCategory(PrimitiveType.Text, 'WebUrl');
+
 
             var groupSource1: DataViewMetadataColumn = { displayName: 'group1', type: dataTypeString, index: 0 };
             var groupSource2: DataViewMetadataColumn = { displayName: 'group2', type: dataTypeString, index: 1 };
             var groupSource3: DataViewMetadataColumn = { displayName: 'group3', type: dataTypeString, index: 2 };
+            var groupSourceWebUrl: DataViewMetadataColumn = { displayName: 'groupWebUrl', type: dataTypeWebUrl, index: 0 };
 
             var measureSource1: DataViewMetadataColumn = { displayName: 'measure1', type: dataTypeNumber, isMeasure: true, index: 3, objects: { general: { formatString: '#.0' } } };
             var measureSource2: DataViewMetadataColumn = { displayName: 'measure2', type: dataTypeNumber, isMeasure: true, index: 4, objects: { general: { formatString: '#.00' } } };

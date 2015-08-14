@@ -88,8 +88,8 @@ module powerbi {
         GeotaggingString_Territory: "territory",
         GeotaggingString_Territories: "territories",
         GeotaggingString_VRMBackCompat_CountryRegion: "CountryRegion",
-        GeotaggingString_VRMBackCompat_StateOrProvince: "StateOrProvince"
-    };
+        GeotaggingString_VRMBackCompat_StateOrProvince: "StateOrProvince",
+    }
 
     export class GeoTaggingAnalyzerService implements IGeoTaggingAnalyzerService {
         private GeotaggingString_Continent;
@@ -435,12 +435,12 @@ module powerbi {
             ]);
         }
 
-        //private isEnglishTerritory(fieldRefName: string): boolean {
-        //    return GeoTaggingAnalyzerService.hasMatches(fieldRefName, [
-        //        EnglishBackup.GeotaggingString_Territory,
-        //        EnglishBackup.GeotaggingString_Territories
-        //    ]);
-        //}
+        private isEnglishTerritory(fieldRefName: string): boolean {
+            return GeoTaggingAnalyzerService.hasMatches(fieldRefName, [
+                EnglishBackup.GeotaggingString_Territory,
+                EnglishBackup.GeotaggingString_Territories
+            ]);
+        }
 
         private getEnglishFieldType(fieldName: string): string {
             if (fieldName == null)

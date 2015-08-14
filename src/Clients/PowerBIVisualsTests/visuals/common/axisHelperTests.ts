@@ -70,6 +70,32 @@ module powerbitests {
     });
 
     describe("AxisHelper createDomain tests",() => {
+        var ordinalCartesianSeries = [
+            {
+                data: [{
+                    categoryValue: "Ford",
+                    value: 11,
+                    categoryIndex: 0,
+                    seriesIndex: 0,
+                }, {
+                    categoryValue: "Chevy",
+                    value: 9,
+                    categoryIndex: 1,
+                    seriesIndex: 0,
+                }, {
+                    categoryValue: "Toyota",
+                    value: 6,
+                    categoryIndex: 2,
+                    seriesIndex: 0,
+                }, {
+                    categoryValue: "Honda",
+                    value: 7,
+                    categoryIndex: 3,
+                    seriesIndex: 0,
+                }]
+            },
+        ];
+
         var scalarCartesianSeries = [
             {
                 data: [{

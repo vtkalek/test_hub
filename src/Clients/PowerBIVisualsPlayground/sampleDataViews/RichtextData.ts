@@ -28,6 +28,10 @@
 
 module powerbi.visuals.sampleDataViews {
 
+    import DataViewTransform = powerbi.data.DataViewTransform;
+    import ValueType = powerbi.ValueType;
+    import PrimitiveType = powerbi.PrimitiveType;
+    
     export class RichtextData extends SampleDataViews implements ISampleDataViewsMethods {
 
         public name: string = "RichtextData";
@@ -43,10 +47,11 @@ module powerbi.visuals.sampleDataViews {
             "spot trends",
             "charts",
             "simple drag-and-drop gestures",
-            "personalized dashboards"
-        ];
+            "personalized dashboards"                
+        ]
 
         private sampleSingleData = this.sampleData[0];
+
 
         private sampleTextStyle = {
             fontFamily: "Heading",
@@ -55,7 +60,7 @@ module powerbi.visuals.sampleDataViews {
             fontWeight: "300",
             fontStyle: "italic",
             float: "left"
-        };
+        }
 
         public getDataViews(): DataView[] {
             // 1 paragraphs, with formatting
@@ -68,8 +73,10 @@ module powerbi.visuals.sampleDataViews {
                     }]
                 }];
 
+
             return this.buildParagraphsDataView(paragraphs);
         }
+
         
         private buildParagraphsDataView(paragraphs: powerbi.visuals.ParagraphContext[]): powerbi.DataView[] {
             return [{ metadata: { columns: [], objects: { general: { paragraphs: paragraphs } } } }];

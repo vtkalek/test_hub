@@ -41,6 +41,7 @@ module powerbitests {
             { displayName: "Price", isMeasure: true }]
     };
 
+
     var dataViewCategorical = {
         categories: [{
             source: dataViewMetadata.columns[0],

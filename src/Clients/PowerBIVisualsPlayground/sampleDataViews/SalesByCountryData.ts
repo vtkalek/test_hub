@@ -29,6 +29,8 @@
 module powerbi.visuals.sampleDataViews {
 
     import DataViewTransform = powerbi.data.DataViewTransform;
+    import ValueType = powerbi.ValueType;
+    import PrimitiveType = powerbi.PrimitiveType;
     
     export class SalesByCountryData extends SampleDataViews implements ISampleDataViewsMethods {
 
@@ -46,6 +48,7 @@ module powerbi.visuals.sampleDataViews {
         private sampleMax: number = 1000000;
 
         private sampleSingleData: number = 55943.67;
+
 
         public getDataViews(): DataView[] {
 
@@ -119,6 +122,7 @@ module powerbi.visuals.sampleDataViews {
                 single: { value: this.sampleSingleData }
             }];
         }
+
         
         public randomize(): void {
 

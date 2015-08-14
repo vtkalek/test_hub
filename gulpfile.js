@@ -41,7 +41,6 @@ var deploy      = require('gulp-gh-pages');
 var git = require('gulp-git');
 var run = require('gulp-run');
 var tslint = require('gulp-tslint');
-var download = require("gulp-download");
 
 var jsUglifyOptions = {
     compress: {
@@ -74,23 +73,18 @@ gulp.task("tslint", function(){
 	return gulp.src([		
 		"src/Clients/VisualsCommon/**/*.ts",
 		"!src/Clients/VisualsCommon*/obj/*.*",
-		"!src/Clients/VisualsCommon/**/*.d.ts",
 		
 		"src/Clients/VisualsData/**/*.ts",
 		"!src/Clients/VisualsData*/obj/*.*",
-		"!src/Clients/VisualsData/**/*.d.ts",
 		
 		"src/Clients/Visuals/**/*.ts",
 		"!src/Clients/Visuals*/obj/*.*",
-		"!src/Clients/Visuals/**/*.d.ts",
 		
 		"src/Clients/PowerBIVisualsTests/**/*.ts",
 		"!src/Clients/PowerBIVisualsTests*/obj/*.*",
-		"!src/Clients/PowerBIVisualsTests/**/*.d.ts",
 		
 		"src/Clients/PowerBIVisualsPlayground/**/*.ts",
 		"!src/Clients/PowerBIVisualsPlayground*/obj/*.*",
-		"!src/Clients/PowerBIVisualsPlayground/**/*.d.ts",
 	])
 		.pipe(tslint())
 		.pipe(tslint.report("verbose"));
@@ -99,8 +93,7 @@ gulp.task("tslint", function(){
 function buildProject(projectPath, outFileName) {
     var paths = [
         projectPath + "/**/*.ts",
-        "!" + projectPath + "/**/*.d.ts",
-        "!" + projectPath + "/obj/*.*"
+        "!" + projectPath + "/obj/**"
     ];    
 		
     var tscReluts = gulp.src(paths)
@@ -108,12 +101,12 @@ function buildProject(projectPath, outFileName) {
 			sortOutput: true,
 			target: "ES5",
 			declarationFiles: true,
-			out: "/obj/" + outFileName + ".js"
+			out: projectPath + "/obj/" + outFileName + ".js"
 		}));	
 		
 	return merge([
-		tscReluts.js.pipe(gulp.dest(projectPath)),
-		tscReluts.dts.pipe(gulp.dest(projectPath)),
+		tscReluts.js.pipe(gulp.dest("./")),
+		tscReluts.dts.pipe(gulp.dest("./")),
 		tscReluts.js
 			.pipe(uglify(outFileName + ".min.js", jsUglifyOptions))
 			.pipe(gulp.dest(projectPath + "/obj"))
@@ -231,15 +224,8 @@ gulp.task("build_projects", function (callback) {
 		callback);
 });
 
-/** Download dependencies */
-gulp.task('dependencies', function() {
-	download('https://raw.github.com/velesin/jasmine-jquery/master/lib/jasmine-jquery.js')
-    		.pipe(gulp.dest("src/Clients/Externals/ThirdPartyIP/JasmineJQuery"));
-});
-
 gulp.task("build", function (callback) {
 	runSequence(
-		"dependencies",
 		"tslint",
 		"build_projects",
 		callback);
@@ -265,8 +251,8 @@ gulp.task("run_tests", function () {
 		"src/Clients/externals/ThirdPartyIP/LoDash/lodash.min.js",
 		"src/Clients/externals/ThirdPartyIP/GlobalizeJS/globalize.min.js",
 		"src/Clients/externals/ThirdPartyIP/MomentJS/moment.min.js",
-		"src/Clients/externals/ThirdPartyIP/Velocity/velocity.js",
-		"src/Clients/externals/ThirdPartyIP/Velocity/velocity.ui.js",
+		"src/Clients/externals/ThirdPartyIP/Velocity/velocity.min.js",
+		"src/Clients/externals/ThirdPartyIP/Velocity/velocity.ui.min.js",
 		"src/Clients/externals/ThirdPartyIP/QuillJS/quill.min.js",
 		
 		"VisualsTests/powerbi-visuals.all.min.js",
@@ -330,6 +316,18 @@ gulp.task('deploy', function () {
 /**
  * Git tasks.
  */
+
+// Create and switch to a git branch 
+gulp.task('checkout', function () {
+	return  git.checkout('master', function (err) {
+		if (err) throw err;
+	});
+});
+
+gulp.task('git_clean', function () {
+	return run('git clean -fdx').exec()  // clean brunch from all generated files
+})
+
 // Run git pull 
 // remote is the remote repo 
 // branch is the remote branch to pull from 
@@ -341,10 +339,11 @@ gulp.task('pull_rebase', function () {
 
 
 gulp.task('git_update_gh_pages', function() {
-	runSequence('pull_rebase',"build","createdocs",'deploy');
+	runSequence('pull_rebase','typedoc','deploy');
 });
 
 /**
  * Default task
  */
+
 gulp.task('default', ['build']);

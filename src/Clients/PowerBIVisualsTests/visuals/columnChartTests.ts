@@ -8848,6 +8848,7 @@ module powerbitests {
             setTimeout(() => {
                 var ticks = $('.columnChart .axisGraphicsContext .y.axis .tick');
                 var tickCount = ticks.length;
+                var categoryCount = 20;
 
                 var startIndex = 10;
                 var expectedValues = _.range(0, tickCount).map(i => String.fromCharCode('a'.charCodeAt(0) + startIndex + i));
@@ -8916,6 +8917,8 @@ module powerbitests {
             setTimeout(() => {
                 var ticks = $('.columnChart .axisGraphicsContext .x.axis .tick');
                 var tickCount = ticks.length;
+                var categoryCount = 20;
+
                 var startIndex = 10;
                 var expectedValues = _.range(0, tickCount).map(i => String.fromCharCode('a'.charCodeAt(0) + startIndex + i));
 

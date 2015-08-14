@@ -226,7 +226,7 @@ gulp.task("build_projects", function (callback) {
 
 gulp.task("build", function (callback) {
 	runSequence(
-		"tslint",
+	
 		"build_projects",
 		callback);
 });

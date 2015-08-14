@@ -98,7 +98,7 @@ gulp.task("tslint", function(){
 function buildProject(projectPath, outFileName) {
     var paths = [
         projectPath + "/**/*.ts",
-        "!" + projectPath + "/obj/**"
+	"!" + projectPath + "/**/*.d.ts"
     ];    
 		
     var tscReluts = gulp.src(paths)

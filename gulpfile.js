@@ -71,20 +71,25 @@ var jsUglifyOptions = {
 
 gulp.task("tslint", function(){
 	return gulp.src([		
-		"src/Clients/VisualsCommon/**/*.ts",
+			"src/Clients/VisualsCommon/**/*.ts",
 		"!src/Clients/VisualsCommon*/obj/*.*",
+		"!src/Clients/VisualsCommon/**/*.d.ts",
 		
 		"src/Clients/VisualsData/**/*.ts",
 		"!src/Clients/VisualsData*/obj/*.*",
+		"!src/Clients/VisualsData/**/*.d.ts",
 		
 		"src/Clients/Visuals/**/*.ts",
 		"!src/Clients/Visuals*/obj/*.*",
+		"!src/Clients/Visuals/**/*.d.ts",
 		
 		"src/Clients/PowerBIVisualsTests/**/*.ts",
 		"!src/Clients/PowerBIVisualsTests*/obj/*.*",
+		"!src/Clients/PowerBIVisualsTests/**/*.d.ts",
 		
 		"src/Clients/PowerBIVisualsPlayground/**/*.ts",
 		"!src/Clients/PowerBIVisualsPlayground*/obj/*.*",
+		"!src/Clients/PowerBIVisualsPlayground/**/*.d.ts"
 	])
 		.pipe(tslint())
 		.pipe(tslint.report("verbose"));

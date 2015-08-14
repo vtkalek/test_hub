@@ -341,7 +341,7 @@ gulp.task('pull_rebase', function () {
 
 
 gulp.task('git_update_gh_pages', function() {
-	runSequence('pull_rebase',"build","combine_internal_d_ts","createdocs",'deploy');
+	runSequence('pull_rebase',"build","createdocs",'deploy');
 });
 
 /**

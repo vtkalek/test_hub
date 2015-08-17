@@ -229,8 +229,6 @@ module powerbi.visuals {
 
         private animatePercentBars(options: FunnelAnimationOptions): void {
             var data: FunnelData = options.viewModel;
-            var graphicsContext: D3.Selection = options.percentGraphicsContext;
-            var layout: IFunnelLayout = options.layout;
             var isHidingPercentBars: boolean = options.isHidingPercentBars;
 
             if (isHidingPercentBars || !data.slices || (data.hasHighlights ? data.slices.length / 2 : data.slices.length) < 2) {
@@ -268,7 +266,6 @@ module powerbi.visuals {
         private animatePercentBarComponents(data: FunnelPercent[], options: FunnelAnimationOptions) {
             var graphicsContext: D3.Selection = options.percentGraphicsContext;
             var layout: IFunnelLayout = options.layout;
-            var animationDuration: number = this.animationDuration;
             var zeroData: FunnelPercent[] = [
                 { percent: 0, value: 0, isTop: true },
                 { percent: 0, value: 0, isTop: false },
@@ -314,7 +311,7 @@ module powerbi.visuals {
                 .data(zeroData)
                 .attr(layout.percentBarLayout.rightTick);
 
-            this.animateToFunnelPercent(rightTick, data, layout.percentBarLayout.rightTick)
+            this.animateToFunnelPercent(rightTick, data, layout.percentBarLayout.rightTick);
 
             // Text
             var text: D3.UpdateSelection = graphicsContext.selectAll(FunnelChart.Selectors.percentBar.text.selector).data(data);

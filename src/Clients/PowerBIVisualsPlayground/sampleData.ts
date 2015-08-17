@@ -44,7 +44,6 @@ module powerbi.visuals.sampleData {
             new sampleDataViews.TeamScoreData()
         ];
 
-
         /**
          * Returns sample data view for a visualization element specified.
          */
@@ -59,13 +58,11 @@ module powerbi.visuals.sampleData {
             return this.data.filter((item) => item.hasPlugin("default"));
         }
 
-
         /**
          * Returns sampleDataView Instance for a visualization element specified.
          */
         public static getDataViewsBySampleName(sampleName: string) {
             return this.data.filter((item) => (item.getName() === sampleName))[0];
-        }
- 
+        } 
     }     
 }

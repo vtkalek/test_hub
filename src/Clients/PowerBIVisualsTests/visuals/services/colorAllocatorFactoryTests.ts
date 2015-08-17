@@ -76,7 +76,6 @@ module powerbitests {
             defaultColorer = visuals.createColorAllocatorFactory().linearGradient3(options, false);
         });
 
-
         it("LinearGradient3: min value", () => {
             expect(defaultColorer.color(100)).toBe("#ff0000");
         });

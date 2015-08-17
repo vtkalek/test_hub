@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Power BI Visualizations
  *
  *  Copyright (c) Microsoft Corporation
@@ -24,13 +24,37 @@
  *  THE SOFTWARE.
  */
 
-/// <reference path="typedefs/typedefs.ts"/>
-/// <reference path="typedefs/typedefs.obj.ts"/>
+/// <reference path="../../_references.ts"/>
 
-/// <reference path="common.ts"/>
-/// <reference path="helpers/helpers.ts"/>
-/// <reference path="mocks.ts"/>
-/// <reference path="helpers/tableDataViewHelper.ts"/>
-/// <reference path="helpers/tablixHelper.ts"/>
-/// <reference path="helpers/performanceTestsHelpers.ts"/>
-/// <reference path="utils/colorUtility.ts"/>
+module powerbi.visuals.samples {
+
+    export class ConsoleWriter implements IVisual {
+
+        public static converter(dataView: DataView): any {
+            window.console.log('converter');
+            window.console.log(dataView);
+
+            return {};
+        }
+
+        public init(options: VisualInitOptions): void {
+            var div = d3.select(options.element.get(0)).append("div");
+            
+            div.append("h1").text("ConsoleWriter");
+            div.append("p").text("This IVisual writes messages passed to it to the javscript console output. Check your console for the actual messages passed. For more information, click below");
+            var anchor = div.append('a');
+            anchor.attr('href', "http://microsoft.github.io/PowerBI-visuals/modules/powerbi.html")
+            .text("Online help");
+
+            window.console.log('init');
+            window.console.log(options);
+        }
+
+        public onResizing(viewport: IViewport) { /* This API will be depricated */ }
+
+        public update(options: VisualUpdateOptions) {
+            window.console.log('update');
+            window.console.log(options);
+        }
+    }
+}

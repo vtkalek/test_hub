@@ -1,10 +1,12 @@
 {
   "name": "powerbi-visuals",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "description": "Microsoft PowerBI Visuals",
   "devDependencies": {
+    "fs": "0.0.2",
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-download": "0.0.1",
     "gulp-gh-pages": "^0.5.2",
     "gulp-git": "^1.2.4",
     "gulp-ignore": "^1.2.1",

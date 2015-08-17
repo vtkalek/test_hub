@@ -44,7 +44,6 @@ module powerbitests {
 
     var dataTypeNumber = ValueType.fromPrimitiveTypeAndCategory(PrimitiveType.Double);
     var dataTypeString = ValueType.fromPrimitiveTypeAndCategory(PrimitiveType.Text);
-    var dataTypeWebUrl = ValueType.fromPrimitiveTypeAndCategory(PrimitiveType.Text, 'WebUrl');
 
     var DefaultWaitForRender = 500;
 
@@ -826,7 +825,6 @@ module powerbitests {
             }, DefaultWaitForRender);
         });
     });
-
 
     function treemapDomValidation(hasLegendObject: boolean) {
         var v: powerbi.IVisual, element: JQuery;

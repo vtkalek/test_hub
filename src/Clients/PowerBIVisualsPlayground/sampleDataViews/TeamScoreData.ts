@@ -27,10 +27,7 @@
 /// <reference path="../_references.ts"/>
 
 module powerbi.visuals.sampleDataViews {
-
     import DataViewTransform = powerbi.data.DataViewTransform;
-    import ValueType = powerbi.ValueType;
-    import PrimitiveType = powerbi.PrimitiveType;
     
     export class TeamScoreData extends SampleDataViews implements ISampleDataViewsMethods {
 

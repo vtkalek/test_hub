@@ -27,11 +27,8 @@
 /// <reference path="../_references.ts"/>
 
 module powerbi.visuals.sampleDataViews {
-
     import DataViewTransform = powerbi.data.DataViewTransform;
-    import ValueType = powerbi.ValueType;
-    import PrimitiveType = powerbi.PrimitiveType;
-    
+
     export class SalesByCountryData extends SampleDataViews implements ISampleDataViewsMethods {
 
         public name: string = "SalesByCountryData";
@@ -48,7 +45,6 @@ module powerbi.visuals.sampleDataViews {
         private sampleMax: number = 1000000;
 
         private sampleSingleData: number = 55943.67;
-
 
         public getDataViews(): DataView[] {
 

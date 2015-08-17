@@ -737,7 +737,7 @@ module powerbi.visuals {
                         y: (d: FunnelPercent) => {
                             return d.isTop
                                 ? -(4 + (percentBarTickHeight / 2))
-                                : +parseInt(FunnelChart.StandardTextProperties.fontSize) + (percentBarTickHeight / 2);
+                                : +parseInt(FunnelChart.StandardTextProperties.fontSize, 10) + (percentBarTickHeight / 2);
                         },
                         style: () => `font-size: ${FunnelChart.StandardTextProperties.fontSize}`,
                         transform: (d: FunnelPercent) => {
@@ -830,7 +830,7 @@ module powerbi.visuals {
             mainLine.exit().remove();
             mainLine.enter()
                 .append('line')
-                .classed(FunnelChart.Selectors.percentBar.mainLine.class, true)
+                .classed(FunnelChart.Selectors.percentBar.mainLine.class, true);
             mainLine
                 .attr(layout.percentBarLayout.mainLine);
 
@@ -839,7 +839,7 @@ module powerbi.visuals {
             leftTick.exit().remove();
             leftTick.enter()
                 .append('line')
-                .classed(FunnelChart.Selectors.percentBar.leftTick.class, true)
+                .classed(FunnelChart.Selectors.percentBar.leftTick.class, true);
             leftTick
                 .attr(layout.percentBarLayout.leftTick);
 
@@ -848,7 +848,7 @@ module powerbi.visuals {
             rightTick.exit().remove();
             rightTick.enter()
                 .append('line')
-                .classed(FunnelChart.Selectors.percentBar.rightTick.class, true)
+                .classed(FunnelChart.Selectors.percentBar.rightTick.class, true);
             rightTick
                 .attr(layout.percentBarLayout.rightTick);
 
@@ -857,7 +857,7 @@ module powerbi.visuals {
             text.exit().remove();
             text.enter()
                 .append('text')
-                .classed(FunnelChart.Selectors.percentBar.text.class, true)
+                .classed(FunnelChart.Selectors.percentBar.text.class, true);
             text
                 .attr(layout.percentBarLayout.text)
                 .text((fp: FunnelPercent) => {

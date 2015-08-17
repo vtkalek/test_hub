@@ -2177,7 +2177,7 @@ module powerbitests {
             var bottomPercent = $(FunnelChart.Selectors.percentBar.text.selector)[1].textContent;
 
             [topPercent, bottomPercent].map((percent: string) => {
-                var validFormat = !!percent.match(this.PercentBarValueFormatRegex);
+                var validFormat = !!percent.match(PercentBarValueFormatRegex);
                 expect(validFormat).toBeTruthy();
 
                 var bottomPercentValue = hasHighlights

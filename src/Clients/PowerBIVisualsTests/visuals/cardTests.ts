@@ -569,7 +569,6 @@ module powerbitests {
                 measures: [0],
             };
 
-
             v.onDataChanged({
                 dataViews: [{
                     metadata: dataViewMetadata,

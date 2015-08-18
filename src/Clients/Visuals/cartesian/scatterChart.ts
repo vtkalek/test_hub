@@ -383,7 +383,8 @@ module powerbi.visuals {
             colorPalette: IDataColorPalette,
             categorical: DataViewValueColumns,
             formatString: string,
-            defaultDataPointColor: string): LegendDataPoint[] {
+            defaultDataPointColor: string
+            ): LegendDataPoint[] {
 
             var grouped = dataValues.grouped();
             var colorHelper = new ColorHelper(colorPalette, scatterChartProps.dataPoint.fill, defaultDataPointColor);

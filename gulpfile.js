@@ -1,4 +1,4 @@
-/// <binding BeforeBuild='build' ProjectOpened='watch' />
+/// <binding BeforeBuild='build' />
 /*
  *  Power BI Visualizations
  *
@@ -113,11 +113,11 @@ function buildProject(projectPath, outFileName) {
 		}));	
 		
 	return merge([
-		tscReluts.js.pipe(gulp.dest("/"+projectPath)),
-		tscReluts.dts.pipe(gulp.dest("/"+projectPath)),
+		tscReluts.js.pipe(gulp.dest(projectPath)),
+		tscReluts.dts.pipe(gulp.dest(projectPath)),
 		tscReluts.js
 			.pipe(uglify(outFileName + ".min.js", jsUglifyOptions))
-			.pipe(gulp.dest("/"+projectPath + "/obj"))
+			.pipe(gulp.dest(projectPath + "/obj"))
 	]);
 }
 
@@ -230,7 +230,7 @@ gulp.task("build_projects", function (callback) {
 		"build_visuals_playground", 
 		"build_visuals_tests",
 		callback);
-}); 
+});
 
 /** Download dependencies */
 gulp.task('dependencies', function () {
@@ -248,7 +248,7 @@ gulp.task('dependencies', function () {
 
 gulp.task("build", function (callback) {
 	runSequence(
-//		"tslint",
+		"tslint",
 		"build_projects",
 		callback);
 });
@@ -286,7 +286,7 @@ gulp.task("run_tests", function () {
 
 gulp.task("test", function (callback) {
     runSequence(
-    	"dependencies",
+		"dependencies",
 		"build",
 		"copy_dependencies_visuals_tests", 
 		"run_tests", 
@@ -350,18 +350,10 @@ gulp.task('pull_rebase', function () {
 
 
 gulp.task('git_update_gh_pages', function() {
-	runSequence('pull_rebase',"build_projects","combine_internal_d_ts","createdocs",'deploy');
+	runSequence('pull_rebase',"build","combine_internal_d_ts","createdocs",'deploy');
 });
 
 /**
  * Default task
  */
 gulp.task('default', ['build']);
-
-
-gulp.task('watch', ['build'], function () {
-    gulp.watch('src/Clients/VisualsCommon', ['build_visuals_common','build_visuals_data','build_visuals_project','combine_internal_js','combine_all','build_visuals_playground']);
-    gulp.watch('src/Clients/Visuals', ['build_visuals_project','combine_internal_js','combine_all','build_visuals_playground']);
-    gulp.watch('src/Clients/VisualsData', ['build_visuals_data','build_visuals_project','combine_internal_js','combine_all','build_visuals_playground']);
-    gulp.watch('src/Clients/Visuals/images/sprite-src/*.png', ['build_visuals_sprite']);
-});

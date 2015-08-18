@@ -24,10 +24,7 @@
  *  THE SOFTWARE.
  */
 
-///<reference path="../Typedefs/jquery/jquery.d.ts"/>
-///<reference path="../Typedefs/globalize/globalize.d.ts"/>
-///<reference path="../Typedefs/lodash/lodash.d.ts"/>
-
+/// <reference path="typedefs/typedefs.ts"/>
 /// <reference path="typedefs/typedefs.obj.ts"/>
 
 /// <reference path="semanticQuery\sqExprVisitor.ts"/>

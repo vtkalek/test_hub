@@ -113,8 +113,8 @@ function buildProject(projectPath, outFileName) {
 		}));	
 		
 	return merge([
-		tscReluts.js.pipe(gulp.dest(projectPath)),
-		tscReluts.dts.pipe(gulp.dest(projectPath)),
+		tscReluts.js.pipe(gulp.dest("./")),
+		tscReluts.dts.pipe(gulp.dest("./")),
 		tscReluts.js
 			.pipe(uglify(outFileName + ".min.js", jsUglifyOptions))
 			.pipe(gulp.dest(projectPath + "/obj"))
@@ -286,8 +286,8 @@ gulp.task("run_tests", function () {
 
 gulp.task("test", function (callback) {
     runSequence(
+    	"dependencies",
 		"build",
-		"dependencies",
 		"copy_dependencies_visuals_tests", 
 		"run_tests", 
 		callback);

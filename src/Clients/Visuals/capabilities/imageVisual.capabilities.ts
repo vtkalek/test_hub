@@ -24,48 +24,16 @@
  *  THE SOFTWARE.
  */
 
-/// <reference path="../_references.ts"/>
-
 module powerbi.visuals {
-    import Utility = jsCommon.Utility;
-
-    export interface ImageDataViewObjects extends DataViewObjects {
-        general: ImageDataViewObject;
-    }
-
-    export interface ImageDataViewObject extends DataViewObject {
-        imageUrl: string;
-    }
-
-    export class ImageVisual implements IVisual {
-
-        private element: JQuery;
-
-        public init(options: VisualInitOptions) {
-            this.element = options.element;
+    export var imageVisualCapabilities: VisualCapabilities = {
+        objects: {
+            general: {
+                properties: {
+                    imageUrl: {
+                        type: { misc: { imageUrl: true } }
+                    }
+                }
+            }
         }
-
-        public onDataChanged(options: VisualDataChangedOptions): void {
-            this.element.empty();
-
-            var dataViews = options.dataViews;
-            if (!dataViews || dataViews.length === 0)
-                return;
-
-            var objects = <ImageDataViewObjects>dataViews[0].metadata.objects;
-            if (!objects || !objects.general)
-                return;
-
-            var div = $("<div class='imageBackground' />");
-
-            var imageUrl = objects.general.imageUrl;
-            if (Utility.isValidImageDataUrl(imageUrl))
-                div.css("backgroundImage", "url(" + imageUrl + ")");
-
-            div.appendTo(this.element);
-        }
-
-        public onResizing(viewport: IViewport): void {
-        }
-    }
+    };
 } 

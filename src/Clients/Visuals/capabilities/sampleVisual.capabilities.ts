@@ -24,42 +24,33 @@
 *  THE SOFTWARE.
 */
 
-module powerbitests {
-    import EphemeralStorageService = powerbi.EphemeralStorageService;
-
-    describe('Ephemeral Storage Service', () => {
-        it('get with existing key retrieves data', () => {
-            var storage = new EphemeralStorageService();
-
-            storage.setData('key', 'value');
-
-            var value = storage.getData('key');
-
-            expect(value).toBe('value');
-        });
-
-        it('get with non-existing key returns null', () => {
-            var storage = new EphemeralStorageService();
-
-            storage.setData('key1', 'value');
-
-            var value = storage.getData('key2');
-
-            expect(value == null).toBeTruthy();
-        });
-
-        it('cache is cleared after interval', (done) => {
-            var timeout = 10;
-            var storage = new EphemeralStorageService(timeout);
-
-            storage.setData('key', 'value');
-
-            setTimeout(() => {
-                // cache should be cleared by now
-                var value = storage.getData('key');
-                expect(value == null).toBeTruthy();
-                done();
-            }, timeout + 10);
-        });
-    });
+module powerbi.visuals {
+    export var cheerMeterCapabilities: VisualCapabilities = {
+        dataRoles: [
+            {
+                name: 'Category',
+                kind: VisualDataRoleKind.Grouping,
+            },
+            {
+                name: 'Y',
+                kind: VisualDataRoleKind.Measure,
+            },
+        ],
+        dataViewMappings: [{
+            categorical: {
+                categories: {
+                    for: { in: 'Category' },
+                },
+            },
+        }],
+        dataPoint: {
+            displayName: data.createDisplayNameGetter('Visual_DataPoint'),
+            properties: {
+                fill: {
+                    displayName: data.createDisplayNameGetter('Visual_Fill'),
+                    type: { fill: { solid: { color: true } } }
+                },
+            }
+        },
+    };
 }

@@ -57,7 +57,7 @@ module powerbi {
 
     export class EphemeralStorageService implements IStorageService {
         private cache: { [key: string]: any } = {};
-        private clearCacheTimerId: number = undefined;
+        private clearCacheTimerId: number;
         private clearCacheInterval: number;
         public static defaultClearCacheInterval: number = (1000 * 60 * 60 * 24);  // 1 day
 
@@ -77,7 +77,7 @@ module powerbi {
             this.cache[key] = data;
 
             if (this.clearCacheTimerId == null) {
-                this.clearCacheTimerId = setTimeout(() => this.clearCache, this.clearCacheInterval);
+                this.clearCacheTimerId = setTimeout(() => this.clearCache(), this.clearCacheInterval);
             }
         }
 

@@ -39,15 +39,6 @@ module powerbi.visuals {
             objectName: 'general',
             propertyName: 'formatString',
         };
-        protected static objectDescs: data.DataViewObjectDescriptors = {
-            general: {
-                properties: {
-                    formatString: {
-                        type: { formatting: { formatString: true } },
-                    },
-                },
-            }
-        };
 
         protected animator: IAnimator;
 

@@ -357,15 +357,3 @@ gulp.task('git_update_gh_pages', function() {
  * Default task
  */
 gulp.task('default', ['build']);
-
-/**
-* Watch task
-*/
-
-gulp.task('watch', ['build'], function () {
-    gulp.watch(["src/Clients/VisualsCommon/**/*.ts","!src/Clients/VisualsCommon/**/*.d.ts"], ['build_visuals_common']);
-    gulp.watch(["src/Clients/VisualsData/**/*.ts","!src/Clients/VisualsData/**/*.d.ts"], ['build_visuals_data']);
-    gulp.watch("src/Clients/Visuals/images/sprite-src/*.png", ['build_visuals_sprite']);
-
-    gulp.watch('./js/**/*.js', ['js']);
-});

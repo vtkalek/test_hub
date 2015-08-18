@@ -248,7 +248,7 @@ gulp.task('dependencies', function () {
 
 gulp.task("build", function (callback) {
 	runSequence(
-		"tslint",
+//		"tslint",
 		"build_projects",
 		callback);
 });

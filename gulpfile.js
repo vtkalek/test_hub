@@ -113,11 +113,11 @@ function buildProject(projectPath, outFileName) {
 		}));	
 		
 	return merge([
-		tscReluts.js.pipe(gulp.dest("./"+projectPath)),
-		tscReluts.dts.pipe(gulp.dest("./"+projectPath)),
+		tscReluts.js.pipe(gulp.dest("/"+projectPath)),
+		tscReluts.dts.pipe(gulp.dest("/"+projectPath)),
 		tscReluts.js
 			.pipe(uglify(outFileName + ".min.js", jsUglifyOptions))
-			.pipe(gulp.dest("./"+projectPath + "/obj"))
+			.pipe(gulp.dest("/"+projectPath + "/obj"))
 	]);
 }
 

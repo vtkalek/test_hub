@@ -1,4 +1,3 @@
-/// <binding BeforeBuild='build' />
 /*
  *  Power BI Visualizations
  *
@@ -42,8 +41,6 @@ var deploy      = require('gulp-gh-pages');
 var git = require('gulp-git');
 var run = require('gulp-run');
 var tslint = require('gulp-tslint');
-var download = require("gulp-download");
-var fs = require("fs");
 
 var jsUglifyOptions = {
     compress: {
@@ -92,7 +89,7 @@ gulp.task("tslint", function(){
 		
 		"src/Clients/PowerBIVisualsPlayground/**/*.ts",
 		"!src/Clients/PowerBIVisualsPlayground*/obj/*.*",
-		"!src/Clients/PowerBIVisualsPlayground/**/*.d.ts",
+		"!src/Clients/PowerBIVisualsPlayground/**/*.d.ts"
 	])
 		.pipe(tslint())
 		.pipe(tslint.report("verbose"));
@@ -101,9 +98,8 @@ gulp.task("tslint", function(){
 function buildProject(projectPath, outFileName) {
     var paths = [
         projectPath + "/**/*.ts",
-        "!" + projectPath + "/**/*.d.ts",
         "!" + projectPath + "/obj/**",
-        "!" + projectPath + "/**/*.obj.ts"
+		"!" + projectPath + "/**/*.d.ts"
     ];    
 		
     var tscReluts = gulp.src(paths)
@@ -111,12 +107,12 @@ function buildProject(projectPath, outFileName) {
 			sortOutput: true,
 			target: "ES5",
 			declarationFiles: true,
-			out: "/obj/" + outFileName + ".js"
+			out: projectPath + "/obj/" + outFileName + ".js"
 		}));	
 		
 	return merge([
-		tscReluts.js.pipe(gulp.dest(projectPath)),
-		tscReluts.dts.pipe(gulp.dest(projectPath)),
+		tscReluts.js.pipe(gulp.dest("./")),
+		tscReluts.dts.pipe(gulp.dest("./")),
 		tscReluts.js
 			.pipe(uglify(outFileName + ".min.js", jsUglifyOptions))
 			.pipe(gulp.dest(projectPath + "/obj"))
@@ -234,23 +230,9 @@ gulp.task("build_projects", function (callback) {
 		callback);
 });
 
-/** Download dependencies */
-gulp.task('dependencies', function () {
-    fs.exists('src/Clients/Externals/ThirdPartyIP/JasmineJQuery/jasmine-jquery.js', function (exists) {
-        if (!exists) {
-            console.log('Jasmine test dependency missing. Downloading dependency.');
-            download('https://raw.github.com/velesin/jasmine-jquery/master/lib/jasmine-jquery.js')
-                .pipe(gulp.dest("src/Clients/Externals/ThirdPartyIP/JasmineJQuery"));
-        }
-        else {
-            console.log('Jasmine test dependency exists.');
-        }
-    });
-});
-
 gulp.task("build", function (callback) {
 	runSequence(
-//		"tslint",
+		"tslint",
 		"build_projects",
 		callback);
 });
@@ -287,8 +269,7 @@ gulp.task("run_tests", function () {
 });
 
 gulp.task("test", function (callback) {
-    runSequence(
-		"dependencies",
+	runSequence(
 		"build",
 		"copy_dependencies_visuals_tests", 
 		"run_tests", 
@@ -321,7 +302,7 @@ gulp.task("createdocs", function () {
 	        }));
 });
 
-gulp.task("gendocs", function (callback) {
+gulp.task("typedoc", function (callback) {
 	runSequence(
 		"build",
 		"combine_internal_d_ts",
@@ -341,6 +322,18 @@ gulp.task('deploy', function () {
 /**
  * Git tasks.
  */
+
+// Create and switch to a git branch 
+gulp.task('checkout', function () {
+	return  git.checkout('master', function (err) {
+		if (err) throw err;
+	});
+});
+
+gulp.task('git_clean', function () {
+	return run('git clean -fdx').exec()  // clean brunch from all generated files
+})
+
 // Run git pull 
 // remote is the remote repo 
 // branch is the remote branch to pull from 
@@ -352,10 +345,11 @@ gulp.task('pull_rebase', function () {
 
 
 gulp.task('git_update_gh_pages', function() {
-	runSequence('pull_rebase',"build","combine_internal_d_ts","createdocs",'deploy');
+	runSequence('pull_rebase','typedoc','deploy');
 });
 
 /**
  * Default task
  */
+
 gulp.task('default', ['build']);

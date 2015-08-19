@@ -65,6 +65,77 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
+				<h1 id="microsoft-power-bi-visuals">Microsoft Power BI visuals</h1>
+				<p>The Microsoft Power BI visuals project provides high quality data visualizations that you can use to extend <a href="https://powerbi.microsoft.com/">Power BI</a>.  The project contains over 20 visualization types, the framework to run them, and the testing infrastructure that enables you to build high quality visualizations.  The framework provides all the interfaces you need to integrate fully with Power BI&#39;s selection, filtering, and other UI experiences.  The code is written in <a href="http://www.typescriptlang.org/">TypeScript</a> so it&#39;s easier to build and debug. Everything compiles down to JavaScript and runs in modern web browsers.  The visuals are built using <a href="http://d3js.org/">D3</a> but you can use your favorite technology like <a href="https://en.wikipedia.org/wiki/WebGL">WebGL</a>, <a href="https://en.wikipedia.org/wiki/Canvas_element">Canvas</a>, or <a href="https://en.wikipedia.org/wiki/Scalable_Vector_Graphics">SVG</a>. This gives you everything you need to build custom visualizations for Power BI.</p>
+				<h2 id="what-is-included">What is included</h2>
+				<ol>
+					<li><code>src</code> folder contains the project source code for your experiments and if you will desire to create a new visual.</li>
+					<li><code>src\Clients\PowerBIVisualsPlayground\index.html</code> is a sample application which could be used to try the existing visualization types or as an example how to run visuals you create.</li>
+				</ol>
+				<h2 id="how-to-engage-contribute-and-provide-feedback">How to Engage, Contribute and Provide Feedback</h2>
+				<p>There are many ways in which you can contribute.  </p>
+				<p>We plan to accept community code contributions including new chart types, bug fixes, and additional features for existing chart types.  We&#39;re still working out the contribution guidelines. Hold tight, we&#39;ll update you here when we&#39;ve formalized the guidelines.</p>
+				<p>In the meantime, you can contribute to Power BI visuals in a few different ways:</p>
+				<ul>
+					<li>Submit bugs by opening a GitHub Issue <a href="https://github.com/Microsoft/PowerBI-visuals/issues">here</a></li>
+					<li>Contribute to discussions on <a href="http://stackoverflow.com/questions/tagged/powerbi">StackOverflow</a>.</li>
+					<li>Follow the <a href="http://blogs.msdn.com/powerbidev">Power BI Developer</a> blog for updates</li>
+					<li>Follow Power BI on Twitter <a href="http://twitter.com/mspowerbi">@mspowerbi</a></li>
+				</ul>
+				<h2 id="documentation">Documentation</h2>
+				<ul>
+					<li><a href="https://github.com/Microsoft/PowerBI-visuals/wiki">Getting started</a></li>
+					<li><a href="http://microsoft.github.io/PowerBI-visuals/interfaces/powerbi.ivisual.html">API specification</a></li>
+					<li><a href="http://vtkalek.github.io/test_hub/playground/index.html">Power BI visuals playground (see our visuals live in action)</a></li>
+					<li><a href="https://powerbi.microsoft.com/">Power BI Homepage</a></li>
+				</ul>
+				<h2 id="how-to-build-and-run">How To Build and Run</h2>
+				<h3 id="prerequisites">Prerequisites</h3>
+				<p>To build the library and run the sample application you will need:</p>
+				<ul>
+					<li>A Windows 8.1 or Windows 10 64-bit machine with at least 4 GB of RAM</li>
+					<li><a href="https://www.visualstudio.com/vs-2015-product-editions">Visual Studio Community 2015</a> (Free for use)<ul>
+							<li>Be sure to install the &quot;Microsoft Web Developer Tools&quot; optional feature. To install, go to Add/Remove Programs, right-click on Visual Studio, select Change, then Modify. Check the &quot;Microsoft Web Developer Tools&quot; checkbox and finish the install.</li>
+						</ul>
+					</li>
+					<li><a href="http://git-scm.com/book/en/v2/Getting-Started-Installing-Git#Installing-on-Windows">Git</a></li>
+					<li><a href="https://nodejs.org/download/">Node.js</a></li>
+				</ul>
+				<p>In order to run unit tests you will also need to do the following:</p>
+				<ol>
+					<li>Install <a href="http://phantomjs.org/">PhantomJS</a> (PhantomJS is a headless WebKit scriptable with a JavaScript API. It has fast and native support for various web standards: DOM handling, CSS selector, JSON, Canvas, and SVG.)<ul>
+							<li>Make sure it&#39;s running from command line typing &#39;phantomjs&#39;. If it&#39;s not then you need to update your system PATH variable and add the path to phantomjs.exe file.</li>
+						</ul>
+					</li>
+				</ol>
+				<h3 id="build-power-bi-visuals">Build Power BI visuals</h3>
+				<p>In order to build the Power BI visuals, ensure that you have <a href="http://git-scm.com/book/en/v2/Getting-Started-Installing-Git#Installing-on-Windows">Git</a> and <a href="http://nodejs.org/download/">Node.js</a> installed.</p>
+				<p>Clone a copy of the repo:</p>
+				<pre><code>git clone <span class="hljs-string">https:</span><span class="hljs-comment">//github.com/Microsoft/PowerBI-visuals.git</span>
+</code></pre><p>Change to the PowerBI-visuals directory:</p>
+				<pre><code><span class="hljs-built_in">cd</span> PowerBI-visuals
+</code></pre><p>Install dev dependencies:</p>
+				<pre><code>npm <span class="hljs-operator"><span class="hljs-keyword">install</span>                  # This command will <span class="hljs-keyword">install</span> Gulp <span class="hljs-keyword">and</span> all necessary modules</span>
+</code></pre><p>Use the following commands to build and test:</p>
+				<pre><code><span class="hljs-label">gulp</span> <span class="hljs-keyword">build </span>                              # <span class="hljs-keyword">Build </span>Power <span class="hljs-keyword">BI </span>visuals into `<span class="hljs-keyword">build` </span>folder
+<span class="hljs-label">gulp</span> test                                # Run unit tests (requires <span class="hljs-string">'PhantomJS'</span>, see Prerequisites above)
+</code></pre><h3 id="run-sample-app">Run Sample App</h3>
+				<p>To run sample app:</p>
+				<ol>
+					<li><p>Open <code>src\PowerBIClients.VS2015.sln</code> in Visual Studio then open src\Clients\PowerBIVisualsPlayground\, right click on index.html file and select &#39;Set As Start Page&#39;.</p>
+					</li>
+					<li><p>Right click on the project root folder then select &#39;Property Pages&#39;. In the window opened select &#39;Build&#39; and then in &#39;Before running startup page&#39; select &#39;No Build&#39;.</p>
+					</li>
+					<li><p>Ensure under task explorer, the bindings for the &#39;build&#39; gulp task is set to Before Build.</p>
+					</li>
+					<li><p>Set PowerBI-visuals\src\Clients\PowerBIVisualsPlayground\index.html as the startup page.</p>
+					</li>
+					<li><p>Run.</p>
+					</li>
+				</ol>
+				<h3 id="copyrights">Copyrights</h3>
+				<p>Copyright (c) 2015 Microsoft</p>
+				<p>See the <a href="/LICENSE">LICENSE</a> file for license rights and limitations (MIT).</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

@@ -336,7 +336,9 @@ gulp.task("gendocs", function (callback) {
 
 gulp.task('deploy', function () {
     return gulp.src("./docs/**/*")
-        .pipe(deploy())
+        .pipe(deploy({
+ add: true
+}))
 });
 
 /**

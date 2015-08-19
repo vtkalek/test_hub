@@ -46,7 +46,7 @@ module powerbi.visuals {
 
         // Hardcoded values for Color Picker.
         private basePickerColors: IColorInfo[] = [
-            { value: '#11111F' },
+            { value: '#ff111F' },
             { value: '#000000' },
             { value: '#00B8AA' },
             { value: '#374649' },

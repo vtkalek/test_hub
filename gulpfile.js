@@ -289,7 +289,7 @@ gulp.task("run_tests", function () {
 
 gulp.task("test", function (callback) {
     runSequence(
-        "build",
+        "build_projects",
         "dependencies",
         "copy_dependencies_visuals_tests",
         "run_tests",

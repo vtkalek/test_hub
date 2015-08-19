@@ -102,6 +102,7 @@ function buildProject(projectPath, outFileName) {
     var paths = [
         projectPath + "/**/*.ts",
         "!" + projectPath + "/**/*.d.ts",
+        "!" + projectPath + "/obj/**",
         "!" + projectPath + "/**/*.obj.ts"
     ];    
 		

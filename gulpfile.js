@@ -384,7 +384,7 @@ gulp.task('add_all_gh_pages', function () {
 });
 
 gulp.task('commit_gh_pages', function () {
-    return  run('git -C .docs commit -m "$*" ').exec() 
+    return  run('git -C .docs commit -m "automatic documentation update" ').exec() 
     		 .pipe(gulp.dest('../output')); 
 });
 

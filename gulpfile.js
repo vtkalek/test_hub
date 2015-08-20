@@ -369,7 +369,7 @@ gulp.task('checkout_gh_pages', function () {
 });
 
 gulp.task('pull_gh_pages', function () {
-    return  run("git -C .docs pull").exec() 
+    return  run("pushd .docs; git pull; popd").exec() 
     		 .pipe(gulp.dest('../output')); 
 });
 

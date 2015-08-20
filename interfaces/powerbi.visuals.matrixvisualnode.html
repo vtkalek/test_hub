@@ -84,7 +84,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">unknown</span>
+						<span class="tsd-signature-type">DataViewMatrixNode</span>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">MatrixVisualNode</span>
@@ -100,9 +100,18 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="powerbi.visuals.matrixvisualnode.html#childidentityfields" class="tsd-kind-icon">child<wbr>Identity<wbr>Fields</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="powerbi.visuals.matrixvisualnode.html#children" class="tsd-kind-icon">children</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="powerbi.visuals.matrixvisualnode.html#identity" class="tsd-kind-icon">identity</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="powerbi.visuals.matrixvisualnode.html#index" class="tsd-kind-icon">index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="powerbi.visuals.matrixvisualnode.html#issubtotal" class="tsd-kind-icon">is<wbr>Subtotal</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="powerbi.visuals.matrixvisualnode.html#leafindex" class="tsd-kind-icon">leaf<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="powerbi.visuals.matrixvisualnode.html#level" class="tsd-kind-icon">level</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="powerbi.visuals.matrixvisualnode.html#levelsourceindex" class="tsd-kind-icon">level<wbr>Source<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="powerbi.visuals.matrixvisualnode.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="powerbi.visuals.matrixvisualnode.html#parent" class="tsd-kind-icon">parent</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="powerbi.visuals.matrixvisualnode.html#value" class="tsd-kind-icon">value</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="powerbi.visuals.matrixvisualnode.html#values" class="tsd-kind-icon">values</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,6 +119,44 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="childidentityfields" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> child<wbr>Identity<wbr>Fields</h3>
+					<div class="tsd-signature tsd-kind-icon">child<wbr>Identity<wbr>Fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SQExpr</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from DataViewTreeNode.childIdentityFields</p>
+						<ul>
+							<li>Defined in ata/obj/VisualsData.d.ts:1305</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The set of expressions that define the identity for the child nodes.  This must match items in the DataViewScopeIdentity of those nodes.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="children" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> children</h3>
+					<div class="tsd-signature tsd-kind-icon">children<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DataViewTreeNode</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from DataViewTreeNode.children</p>
+						<ul>
+							<li>Defined in ata/obj/VisualsData.d.ts:1302</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="identity" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> identity</h3>
+					<div class="tsd-signature tsd-kind-icon">identity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DataViewScopeIdentity</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from DataViewTreeNode.identity</p>
+						<ul>
+							<li>Defined in ata/obj/VisualsData.d.ts:1303</li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="index" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> index</h3>
@@ -125,6 +172,22 @@
 						</div>
 						<p>Note: For size optimization, we could also look this item up in the parent&#39;s
 						children collection, but we may need to pay the perf penalty.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="issubtotal" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> is<wbr>Subtotal</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Subtotal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from DataViewMatrixNode.isSubtotal</p>
+						<ul>
+							<li>Defined in ata/obj/VisualsData.d.ts:1345</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates whether or not the node is a subtotal node. Its value is false if omitted.</p>
+						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -143,6 +206,49 @@
 						</div>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="level" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> level</h3>
+					<div class="tsd-signature tsd-kind-icon">level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from DataViewMatrixNode.level</p>
+						<ul>
+							<li>Defined in ata/obj/VisualsData.d.ts:1341</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates the level this node is on. Zero indicates the outermost children (root node level is undefined).</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="levelsourceindex" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> level<wbr>Source<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">level<wbr>Source<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from DataViewMatrixNode.levelSourceIndex</p>
+						<ul>
+							<li>Defined in ata/obj/VisualsData.d.ts:1343</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates the source metadata index on the node&#39;s level. Its value is 0 if omitted.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="name" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from DataViewTreeNode.name</p>
+						<ul>
+							<li>Defined in ata/obj/VisualsData.d.ts:1297</li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="parent" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> parent</h3>
@@ -157,6 +263,36 @@
 							<p>Parent of the node.
 							Undefined for outermost nodes (children of the one root node).</p>
 						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="value" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> value</h3>
+					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from DataViewTreeNode.value</p>
+						<ul>
+							<li>Defined in ata/obj/VisualsData.d.ts:1298</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="values" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> values</h3>
+					<div class="tsd-signature tsd-kind-icon">values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from DataViewTreeNode.values</p>
+						<ul>
+							<li>Defined in ata/obj/VisualsData.d.ts:1299</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-index-signature">
+								<h5><span class="tsd-signature-symbol">[</span>id: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">DataViewTreeNodeValue</span></h5>
+							</li>
+						</ul>
 					</div>
 				</section>
 			</section>
@@ -276,14 +412,41 @@
 					<li class="current tsd-kind-interface tsd-parent-kind-module">
 						<a href="powerbi.visuals.matrixvisualnode.html" class="tsd-kind-icon">Matrix<wbr>Visual<wbr>Node</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="powerbi.visuals.matrixvisualnode.html#childidentityfields" class="tsd-kind-icon">child<wbr>Identity<wbr>Fields</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="powerbi.visuals.matrixvisualnode.html#children" class="tsd-kind-icon">children</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="powerbi.visuals.matrixvisualnode.html#identity" class="tsd-kind-icon">identity</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="powerbi.visuals.matrixvisualnode.html#index" class="tsd-kind-icon">index</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="powerbi.visuals.matrixvisualnode.html#issubtotal" class="tsd-kind-icon">is<wbr>Subtotal</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="powerbi.visuals.matrixvisualnode.html#leafindex" class="tsd-kind-icon">leaf<wbr>Index</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="powerbi.visuals.matrixvisualnode.html#level" class="tsd-kind-icon">level</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="powerbi.visuals.matrixvisualnode.html#levelsourceindex" class="tsd-kind-icon">level<wbr>Source<wbr>Index</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="powerbi.visuals.matrixvisualnode.html#name" class="tsd-kind-icon">name</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="powerbi.visuals.matrixvisualnode.html#parent" class="tsd-kind-icon">parent</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="powerbi.visuals.matrixvisualnode.html#value" class="tsd-kind-icon">value</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="powerbi.visuals.matrixvisualnode.html#values" class="tsd-kind-icon">values</a>
 							</li>
 						</ul>
 					</li>

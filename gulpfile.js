@@ -391,7 +391,7 @@ gulp.task('checkout_gh_pages', function () {
 });
 
 gulp.task('pull_gh_pages', function () {
-    return  run("git -C .docs pull").exec(); 
+    return  run("git -C .docs pull").exec().on('error', onError);
 });
 
  gulp.task('copy_docs', function () {
@@ -400,7 +400,7 @@ gulp.task('pull_gh_pages', function () {
     });
 
 gulp.task('add_all_gh_pages', function () {
-    return  run('git -C .docs add --all').exec(); 
+    return  run('git -C .docs add --all').exec().on('error', onError);
 });
 
 var del = require('del');

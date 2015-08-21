@@ -405,7 +405,7 @@ gulp.task('add_all_gh_pages', function () {
 
 var del = require('del');
 //logCapture = require('gulp-log-capture');
-gulp.task('commit_gh_pages', function (callback) {
+gulp.task('commit_gh_pages', function () {
 
 run('git -C .docs status > node_modules/statuscheck.txt').exec() 
   			 .on('error', onError);

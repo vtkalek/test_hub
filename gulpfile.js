@@ -400,7 +400,7 @@ gulp.task('pull_gh_pages', function () {
     });
 
 gulp.task('add_all_gh_pages', function () {
-    return  run('git -C .docs add --all').exec().on('error', onError);
+    return  run('git -C .docs add --all > node_modules/addfilestogit.txt').exec().on('error', onError);
 });
 
 var del = require('del');

@@ -351,6 +351,8 @@ gulp.task('pull_rebase', function () {
     });
 });
 
+
+var gutil = require('gulp-util');
 // Command line option:
 //  --fatal=[warning|error|off]
 var fatalLevel = require('yargs').argv.fatal;
@@ -368,7 +370,7 @@ function isFatal(level) {
 // Handle an error based on its severity level.
 // Log all levels, and exit the process for fatal levels.
 function handleError(level, error) {
-   gutil.log('I\'ve got errors' + error.message);
+   gutil.log('I\'ve got error: ' + error.message+' Now thinking, what to do with it...');
    if (isFatal(level)) {
       process.exit(1);
    }
@@ -407,8 +409,7 @@ gulp.task('add_all_gh_pages', function () {
 });
 
 gulp.task('commit_gh_pages', function () {
-    return  run('git -C .docs commit -m "automatic documentation update" ').exec() 
-    		 .pipe(gulp.dest('../output'))
+    return  run('git -C .docs commit -m \'automatic-documentation-update\' ').exec() 
     		 .on('error', onError);
 });
 

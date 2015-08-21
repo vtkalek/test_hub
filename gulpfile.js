@@ -351,8 +351,31 @@ gulp.task('pull_rebase', function () {
     });
 });
 
+// Command line option:
+//  --fatal=[warning|error|off]
+var fatalLevel = require('yargs').argv.fatal;
 
+var ERROR_LEVELS = ['error', 'warning'];
 
+// Return true if the given level is equal to or more severe than
+// the configured fatality error level.
+// If the fatalLevel is 'off', then this will always return false.
+// Defaults the fatalLevel to 'error'.
+function isFatal(level) {
+   return ERROR_LEVELS.indexOf(level) <= ERROR_LEVELS.indexOf(fatalLevel || 'error');
+}
+
+// Handle an error based on its severity level.
+// Log all levels, and exit the process for fatal levels.
+function handleError(level, error) {
+   gutil.log('I\'ve got errors' + error.message);
+   if (isFatal(level)) {
+      process.exit(1);
+   }
+}
+
+// Convenience handler for error-level errors.
+function onError(error) { handleError.call(this, 'error', error);}
 
 
 gulp.task('checkout_gh_pages', function () {
@@ -385,7 +408,8 @@ gulp.task('add_all_gh_pages', function () {
 
 gulp.task('commit_gh_pages', function () {
     return  run('git -C .docs commit -m "automatic documentation update" ').exec() 
-    		 .pipe(gulp.dest('../output')); 
+    		 .pipe(gulp.dest('../output'))
+    		 .on('error', onError);
 });
 
 gulp.task('push_gh_pages', function () {

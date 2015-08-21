@@ -44,6 +44,10 @@ var run = require('gulp-run');
 var tslint = require('gulp-tslint');
 var download = require("gulp-download");
 var fs = require("fs");
+var gutil = require('gulp-util');
+// Command line option:
+//  --fatal=[warning|error|off]
+var fatalLevel = require('yargs').argv.fatal;
 
 var jsUglifyOptions = {
     compress: {
@@ -351,12 +355,6 @@ gulp.task('pull_rebase', function () {
     });
 });
 
-
-var gutil = require('gulp-util');
-// Command line option:
-//  --fatal=[warning|error|off]
-var fatalLevel = require('yargs').argv.fatal;
-
 var ERROR_LEVELS = ['error', 'warning'];
 
 // Return true if the given level is equal to or more severe than
@@ -378,7 +376,6 @@ function handleError(level, error) {
 
 // Convenience handler for error-level errors.
 function onError(error) { handleError.call(this, 'error', error);}
-
 
 gulp.task('checkout_gh_pages', function () {
     fs.exists('.docs', function (exists) {
@@ -408,9 +405,37 @@ gulp.task('add_all_gh_pages', function () {
     		 .pipe(gulp.dest('../output')); 
 });
 
-gulp.task('commit_gh_pages', function () {
-    return  run('git -C .docs commit -m \'automatic-documentation-update\' ').exec() 
-    		 .on('error', onError);
+var del = require('del');
+//logCapture = require('gulp-log-capture');
+gulp.task('commit_gh_pages', function (callback) {
+
+run('git -C .docs status > node_modules/statuscheck.txt').exec() 
+  			 .on('error', onError);
+
+setTimeout(function() {
+   var doCommit = false;
+  fs.readFile("node_modules/statuscheck.txt", "utf-8", function(err, _data) {
+
+      	doCommit = _data.indexOf('nothing to commit')<0;
+
+	del(['node_modules/statuscheck.txt'], function (err, paths) {
+	    //console.log('Deleted files/folders:\n', paths.join('\n'));
+		});
+		console.log('Original git message: \n '+_data);
+		if(err)
+			console.log('Command exec ERROR: \n '+err);
+    });
+
+	if(doCommit)
+  				return run('git -C .docs commit -m \'automatic-documentation-update\'').exec() 
+  			 .on('error', onError);
+	else
+	{
+	 console.log('Nothing to commit');
+	 return false;
+	}
+}, 10000);
+  			 
 });
 
 gulp.task('push_gh_pages', function () {

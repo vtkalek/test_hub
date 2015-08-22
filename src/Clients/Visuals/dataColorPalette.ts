@@ -39,7 +39,7 @@ module powerbi.visuals {
          * use a hardcoded color scheme here until conditional formatting is ready.
          */
         private sentimentColors: IColorInfo[] = [
-            { value: '#C0433A' }, // Red
+            { value: '#111111' }, // Red
             { value: '#E8D62E' }, // Yellow
             { value: '#79C75B' }, // Green
         ];

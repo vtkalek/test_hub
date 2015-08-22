@@ -41,6 +41,7 @@ var spritesmith = require('gulp.spritesmith');
 var deploy      = require('gulp-gh-pages');
 var git = require('gulp-git');
 var run = require('gulp-run');
+var shell = require('gulp-shell')
 var tslint = require('gulp-tslint');
 var download = require("gulp-download");
 var fs = require("fs");

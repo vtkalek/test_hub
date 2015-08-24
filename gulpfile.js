@@ -402,7 +402,7 @@ gulp.task('pull_gh_pages', function () {
 
 gulp.task('add_all_gh_pages', function (cb) {
 //	return
-	shell.task(['git -C .docs add --all']).pipe(gulp.dest('../output')).on("end", cb);
+	shell.task(['git -C .docs add --all']).on("end", cb);
   // return run('git -C .docs add --all').exec().pipe(gulp.dest('../output'));
 });
 

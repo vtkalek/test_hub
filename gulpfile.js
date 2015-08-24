@@ -429,7 +429,7 @@ gulp.task('commit_gh_pages', function (callback) {
 
 setTimeout(function() {
 
-  fs.readFileSync("node_modules/statuscheck.txt", "utf-8", function(err, _data) {
+  fs.readFile("node_modules/statuscheck.txt", "utf-8", function(err, _data) {
 	console.log(_data.indexOf('nothing to commit')<0);
       	doCommit = _data.indexOf('nothing to commit')<0;
 	console.log(_data.indexOf('nothing to commit'));
@@ -440,8 +440,8 @@ setTimeout(function() {
 		console.log('Original git message: \n '+_data+ '\n end of original git message');
 		if(err)
 			console.log('Command exec ERROR: \n '+err);
-    });
-	console.log(doCommit);
+
+console.log(doCommit);
 	if(doCommit){
   				return run('git -C .docs commit -m \'automatic-documentation-update\'').exec();
   	callback();
@@ -449,6 +449,10 @@ setTimeout(function() {
 	else
 	{
 	 console.log('Nothing to commit');
+
+
+    });
+	
 
 	 return false;
 	}

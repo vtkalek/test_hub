@@ -436,9 +436,10 @@ setTimeout(function() {
 			console.log('Command exec ERROR: \n '+err);
     });
 
-	if(doCommit)
+	if(doCommit){
   				return run('git -C .docs commit -m \'automatic-documentation-update\'').exec();
   	callback();
+  }
 	else
 	{
 	 console.log('Nothing to commit');

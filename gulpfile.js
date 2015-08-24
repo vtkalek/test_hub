@@ -391,8 +391,8 @@ gulp.task('checkout_gh_pages', function () {
     });
 });
 
-gulp.task('pull_gh_pages', function (callback) {
-    run("git -C .docs pull").exec().on('error', onError).on("end", callback);
+gulp.task('pull_gh_pages', function () {
+    return  run("git -C .docs pull").exec().pipe(gulp.dest('../output'));
 });
 
  gulp.task('copy_docs', function () {
@@ -400,17 +400,16 @@ gulp.task('pull_gh_pages', function (callback) {
           .pipe(gulp.dest('.docs'));
     });
 
-gulp.task('add_all_gh_pages', function (callback) {
+gulp.task('add_all_gh_pages', function () {
 	//return shell.task(['git -C .docs add --all']);
-   run('git -C .docs add --all').exec().pipe(gulp.dest('../output')).on("end", callback);
+   return run('git -C .docs add --all').exec().pipe(gulp.dest('../output'));
 });
 
 var del = require('del');
 //logCapture = require('gulp-log-capture');
 gulp.task('commit_gh_pages', function () {
 
-run('git -C .docs status > node_modules/statuscheck.txt').exec() 
-  			 .on('error', onError);
+run('git -C .docs status > node_modules/statuscheck.txt').exec().pipe(gulp.dest('../output'));
 
 setTimeout(function() {
    var doCommit = false;

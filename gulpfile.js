@@ -418,7 +418,7 @@ gulp.task('add_all_gh_pages', function (cb) {
 
 var del = require('del');
 //logCapture = require('gulp-log-capture');
-gulp.task('commit_gh_pages', function () {
+gulp.task('commit_gh_pages', function (callback) {
 
 run('git -C .docs status > node_modules/statuscheck.txt').exec();
 
@@ -437,15 +437,16 @@ setTimeout(function() {
     });
 
 	if(doCommit)
-  				return run('git -C .docs commit -m \'automatic-documentation-update\'').exec() 
-  			 .on('error', onError);
+  				return run('git -C .docs commit -m \'automatic-documentation-update\'').exec();
+  	callback();
 	else
 	{
 	 console.log('Nothing to commit');
+
 	 return false;
 	}
 }, 10000);
-  			 
+ // return false;			 
 });
 
 gulp.task('push_gh_pages', function () {

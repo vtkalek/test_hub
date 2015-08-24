@@ -420,7 +420,12 @@ var del = require('del');
 //logCapture = require('gulp-log-capture');
 gulp.task('commit_gh_pages', function (callback) {
 
-run('git -C .docs status > node_modules/statuscheck.txt').exec();
+
+	exec('git -C .docs status > node_modules/statuscheck.txt', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
 
 setTimeout(function() {
    var doCommit = false;

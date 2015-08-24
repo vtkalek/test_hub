@@ -409,7 +409,7 @@ var del = require('del');
 //logCapture = require('gulp-log-capture');
 gulp.task('commit_gh_pages', function () {
 
-run('git -C .docs status > node_modules/statuscheck.txt').exec().pipe(gulp.dest('../output'));
+run('git -C .docs status > node_modules/statuscheck.txt').exec();
 
 setTimeout(function() {
    var doCommit = false;

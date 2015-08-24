@@ -443,13 +443,12 @@ setTimeout(function() {
 
 console.log(doCommit);
 	if(doCommit){
-  				return run('git -C .docs commit -m \'automatic-documentation-update\'').exec();
+  		run('git -C .docs commit -m \'automatic-documentation-update\'').exec();
   	callback();
   }
 	else
 	{
 	 console.log('Nothing to commit');
-
 	 return false;
 	}
 

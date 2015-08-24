@@ -424,7 +424,7 @@ run('git -C .docs status > node_modules/statuscheck.txt').exec();
 
 setTimeout(function() {
    var doCommit = false;
-  fs.readFile("node_modules/statuscheck.txt", "utf-8", function(err, _data) {
+  fs.readFileSync("node_modules/statuscheck.txt", "utf-8", function(err, _data) {
 	console.log(_data.indexOf('nothing to commit')<0);
       	doCommit = _data.indexOf('nothing to commit')<0;
 	console.log(_data.indexOf('nothing to commit'));

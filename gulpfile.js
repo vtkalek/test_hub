@@ -417,6 +417,7 @@ gulp.task('add_all_gh_pages', function (cb) {
 });
 
 var del = require('del');
+   var doCommit = false;
 //logCapture = require('gulp-log-capture');
 gulp.task('commit_gh_pages', function (callback) {
 
@@ -424,11 +425,10 @@ gulp.task('commit_gh_pages', function (callback) {
 	exec('git -C .docs status > node_modules/statuscheck.txt', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
-    callback(err);
   });
 
 setTimeout(function() {
-   var doCommit = false;
+
   fs.readFileSync("node_modules/statuscheck.txt", "utf-8", function(err, _data) {
 	console.log(_data.indexOf('nothing to commit')<0);
       	doCommit = _data.indexOf('nothing to commit')<0;

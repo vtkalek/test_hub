@@ -41,7 +41,7 @@ var spritesmith = require('gulp.spritesmith');
 var deploy      = require('gulp-gh-pages');
 var git = require('gulp-git');
 var run = require('gulp-run');
-var shell = require('gulp-shell')
+var shell = require('gulp-shell');
 var tslint = require('gulp-tslint');
 var download = require("gulp-download");
 var fs = require("fs");
@@ -400,8 +400,19 @@ gulp.task('pull_gh_pages', function () {
           .pipe(gulp.dest('.docs'));
     });
 
-gulp.task('add_all_gh_pages', function () {
-	shell.task(['git -C .docs add --all']);
+var exec = require('child_process').exec;
+
+gulp.task('add_all_gh_pages', function (cb) {
+
+
+  exec('git -C .docs add --all', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+
+
+	//shell.task(['git -C .docs add --all']);
   // return run('git -C .docs add --all').exec().pipe(gulp.dest('../output'));
 });
 

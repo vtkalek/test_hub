@@ -450,12 +450,11 @@ console.log(doCommit);
 	{
 	 console.log('Nothing to commit');
 
+	 return false;
+	}
 
     });
 	
-
-	 return false;
-	}
 }, 10000);
  // return false;			 
 });

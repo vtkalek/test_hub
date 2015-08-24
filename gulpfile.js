@@ -391,8 +391,8 @@ gulp.task('checkout_gh_pages', function () {
     });
 });
 
-gulp.task('pull_gh_pages', function () {
-    return  run("git -C .docs pull").exec().on('error', onError);
+gulp.task('pull_gh_pages', function (callback) {
+    return  run("git -C .docs pull").exec().on('error', onError).on("end", callback);
 });
 
  gulp.task('copy_docs', function () {
@@ -400,9 +400,9 @@ gulp.task('pull_gh_pages', function () {
           .pipe(gulp.dest('.docs'));
     });
 
-gulp.task('add_all_gh_pages', function () {
+gulp.task('add_all_gh_pages', function (callback) {
 	//return shell.task(['git -C .docs add --all']);
-   return run('git -C .docs add --all').exec().pipe(gulp.dest('../output'));;
+   return run('git -C .docs add --all').exec().pipe(gulp.dest('../output')).on("end", callback);
 });
 
 var del = require('del');

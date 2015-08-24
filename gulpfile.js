@@ -427,9 +427,9 @@ setTimeout(function() {
   fs.readFile("node_modules/statuscheck.txt", "utf-8", function(err, _data) {
 
       	doCommit = _data.indexOf('nothing to commit')<0;
-
+	console.log(_data.indexOf('nothing to commit'));
 	del(['node_modules/statuscheck.txt'], function (err, paths) {
-	    //console.log('Deleted files/folders:\n', paths.join('\n'));
+	    console.log('Deleted files/folders:\n', paths.join('\n'));
 		});
 		console.log('Original git message: \n '+_data);
 		if(err)

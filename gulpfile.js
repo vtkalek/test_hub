@@ -449,7 +449,7 @@ console.log(doCommit);
 	else
 	{
 	 console.log('Nothing to commit');
-	 return false;
+	 return true;
 	}
 
     });

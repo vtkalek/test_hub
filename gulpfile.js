@@ -401,8 +401,8 @@ gulp.task('pull_gh_pages', function () {
     });
 
 gulp.task('add_all_gh_pages', function () {
-	return shell.task(['git -C .docs add --all']);
-   //return run('git -C .docs add --all > node_modules/addfilestogit.txt').exec().on('error', onError);
+	//return shell.task(['git -C .docs add --all']);
+   return run('git -C .docs add --all').exec();
 });
 
 var del = require('del');

@@ -424,7 +424,7 @@ gulp.task('commit_gh_pages', function (callback) {
 	exec('git -C .docs status > node_modules/statuscheck.txt', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
-    cb(err);
+    callback(err);
   });
 
 setTimeout(function() {

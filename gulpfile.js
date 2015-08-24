@@ -442,9 +442,9 @@ gulp.task('push_gh_pages', function () {
     return  run('git -C .docs push').exec(); 
 });
 
-gulp.task('git_update_gh_pages', function() {
+gulp.task('git_update_gh_pages', function(cb) {
     runSequence('pull_rebase',"build_projects","combine_internal_d_ts",'checkout_gh_pages', 'pull_gh_pages'
-    	, "createdocs", 'copy_docs','add_all_gh_pages','commit_gh_pages', 'push_gh_pages');
+    	, "createdocs", 'copy_docs','add_all_gh_pages','commit_gh_pages', 'push_gh_pages',cb);
 });
 
 /**

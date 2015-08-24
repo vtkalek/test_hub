@@ -40,8 +40,7 @@ var jasmineBrowser = require('gulp-jasmine-browser');
 var spritesmith = require('gulp.spritesmith');
 var deploy      = require('gulp-gh-pages');
 var git = require('gulp-git');
-var run = require('gulp-run');
-var shell = require('gulp-shell');
+var exec = require('child_process').exec;
 var tslint = require('gulp-tslint');
 var download = require("gulp-download");
 var fs = require("fs");
@@ -382,8 +381,8 @@ gulp.task('checkout_gh_pages', function () {
     fs.exists('.docs', function (exists) {
         if (!exists) {
             console.log('cloning the repo/gh-pages into .docs');
-              return run("git clone https://github.com/vtkalek/test_hub --branch gh-pages --single-branch .docs").exec() 
-    		 .pipe(gulp.dest('output')); 
+              //return run("git clone https://github.com/.../test_hub --branch gh-pages --single-branch .docs").exec() 
+    		 //.pipe(gulp.dest('output')); 
         }
         else {
            return console.log('gh-pages repo exists in .docs folder.');
@@ -392,7 +391,8 @@ gulp.task('checkout_gh_pages', function () {
 });
 
 gulp.task('pull_gh_pages', function () {
-    return  run("git -C .docs pull").exec().pipe(gulp.dest('../output'));
+	exec('git -C .docs pull', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);});
+    //return  run("git -C .docs pull").exec().pipe(gulp.dest('../output'));
 });
 
  gulp.task('copy_docs', function () {
@@ -400,20 +400,10 @@ gulp.task('pull_gh_pages', function () {
           .pipe(gulp.dest('.docs'));
     });
 
-var exec = require('child_process').exec;
+
 
 gulp.task('add_all_gh_pages', function (cb) {
-
-
-  exec('git -C .docs add --all', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
-
-
-	//shell.task(['git -C .docs add --all']);
-  // return run('git -C .docs add --all').exec().pipe(gulp.dest('../output'));
+  exec('git -C .docs add --all', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
 });
 
 var del = require('del');
@@ -422,10 +412,7 @@ var del = require('del');
 gulp.task('commit_gh_pages', function (callback) {
 
 
-	exec('git -C .docs status > node_modules/statuscheck.txt', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-  });
+	exec('git -C .docs status > node_modules/statuscheck.txt', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);});
 
 setTimeout(function() {
 
@@ -435,15 +422,15 @@ setTimeout(function() {
 	console.log(_data.indexOf('nothing to commit'));
 	
 	del(['node_modules/statuscheck.txt'], function (err, paths) {
-	    console.log('Deleted files/folders:\n', paths.join('\n'));
+	    //console.log('Deleted files/folders:\n', paths.join('\n'));
 		});
-		console.log('Original git message: \n '+_data+ '\n end of original git message');
+		//console.log('Original git message: \n '+_data+ '\n end of original git message');
 		if(err)
 			console.log('Command exec ERROR: \n '+err);
 
 console.log(doCommit);
 	if(doCommit){
-  		run('git -C .docs commit -m \'automatic-documentation-update\'').exec();
+		exec('git -C .docs commit -m \'automatic-documentation-update\'', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
   	callback();
   }
 	else
@@ -458,8 +445,9 @@ console.log(doCommit);
  // return false;			 
 });
 
-gulp.task('push_gh_pages', function () {
-    return  run('git -C .docs push').exec(); 
+gulp.task('push_gh_pages', function (cb) {
+	exec('git -C .docs push', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
+	cb();
 });
 
 gulp.task('git_update_gh_pages', function(cb) {

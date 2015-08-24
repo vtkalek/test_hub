@@ -400,9 +400,8 @@ gulp.task('pull_gh_pages', function () {
           .pipe(gulp.dest('.docs'));
     });
 
-gulp.task('add_all_gh_pages', function (cb) {
-//	return
-	shell.task(['git -C .docs add --all']).on("end", cb);
+gulp.task('add_all_gh_pages', function () {
+	shell.task(['git -C .docs add --all']);
   // return run('git -C .docs add --all').exec().pipe(gulp.dest('../output'));
 });
 

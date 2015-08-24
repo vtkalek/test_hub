@@ -428,15 +428,15 @@ setTimeout(function() {
 	console.log(_data.indexOf('nothing to commit')<0);
       	doCommit = _data.indexOf('nothing to commit')<0;
 	console.log(_data.indexOf('nothing to commit'));
-	console.log(doCommit);
+	
 	del(['node_modules/statuscheck.txt'], function (err, paths) {
 	    console.log('Deleted files/folders:\n', paths.join('\n'));
 		});
-		console.log('Original git message: \n '+_data);
+		console.log('Original git message: \n '+_data+ '\n end of original git message');
 		if(err)
 			console.log('Command exec ERROR: \n '+err);
     });
-
+	console.log(doCommit);
 	if(doCommit){
   				return run('git -C .docs commit -m \'automatic-documentation-update\'').exec();
   	callback();

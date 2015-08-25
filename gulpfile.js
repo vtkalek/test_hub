@@ -447,7 +447,6 @@ console.log(doCommit);
 
 gulp.task('push_gh_pages', function (cb) {
 	exec('git -C .docs push', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
-	cb();
 });
 
 gulp.task('git_update_gh_pages', function(cb) {

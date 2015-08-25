@@ -417,9 +417,7 @@ gulp.task('commit_gh_pages', function (callback) {
 setTimeout(function() {
 
   fs.readFile("node_modules/statuscheck.txt", "utf-8", function(err, _data) {
-	console.log(_data.indexOf('nothing to commit')<0);
       	doCommit = _data.indexOf('nothing to commit')<0;
-	console.log(_data.indexOf('nothing to commit'));
 	
 	del(['node_modules/statuscheck.txt'], function (err, paths) {
 	    //console.log('Deleted files/folders:\n', paths.join('\n'));
@@ -430,6 +428,7 @@ setTimeout(function() {
 
 console.log(doCommit);
 	if(doCommit){
+		 console.log('Commiting changes');
 		exec('git -C .docs commit -m \'automatic-documentation-update\'', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
   	callback();
   }

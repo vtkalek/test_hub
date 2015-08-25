@@ -444,8 +444,8 @@ console.log(doCommit);
  // return false;			 
 });
 
-gulp.task('push_gh_pages', function (cb) {
-	exec('git -C .docs push', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
+gulp.task('push_gh_pages', function () {
+	exec('git -C .docs push', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);});
 });
 
 gulp.task('git_update_gh_pages', function(cb) {

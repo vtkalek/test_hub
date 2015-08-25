@@ -430,7 +430,6 @@ console.log(doCommit);
 	if(doCommit){
 		 console.log('Commiting changes');
 		exec('git -C .docs commit -m \'automatic-documentation-update\'', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);callback(err);});
-  	callback();
   }
 	else
 	{

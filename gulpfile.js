@@ -429,7 +429,7 @@ setTimeout(function() {
 console.log(doCommit);
 	if(doCommit){
 		 console.log('Commiting changes');
-		exec('git -C .docs commit -m \'automatic-documentation-update\'', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
+		exec('git -C .docs commit -m \'automatic-documentation-update\'', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);callback(err);});
   	callback();
   }
 	else
@@ -444,8 +444,8 @@ console.log(doCommit);
  // return false;			 
 });
 
-gulp.task('push_gh_pages', function () {
-	exec('git -C .docs push', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);});
+gulp.task('push_gh_pages', function (cb) {
+	exec('git -C .docs push', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
 });
 
 gulp.task('git_update_gh_pages', function(cb) {

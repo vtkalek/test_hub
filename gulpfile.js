@@ -1,4 +1,3 @@
-/// <binding BeforeBuild='build' />
 /*
  *  Power BI Visualizations
  *
@@ -24,6 +23,7 @@
  *  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  *  THE SOFTWARE.
  */
+ 
 /// <binding BeforeBuild='build' />
 var gulp = require('gulp');
 var merge = require('merge2');
@@ -38,16 +38,41 @@ var minifyCSS = require("gulp-minify-css");
 var typedoc = require("gulp-typedoc");
 var jasmineBrowser = require('gulp-jasmine-browser');
 var spritesmith = require('gulp.spritesmith');
-var deploy      = require('gulp-gh-pages');
 var git = require('gulp-git');
 var exec = require('child_process').exec;
 var tslint = require('gulp-tslint');
 var download = require("gulp-download");
 var fs = require("fs");
 var gutil = require('gulp-util');
+var minimist = require("minimist");
+var del = require('del');
 // Command line option:
 //  --fatal=[warning|error|off]
 var fatalLevel = require('yargs').argv.fatal;
+
+var isDebug = false;
+
+var cliOptions = {
+    string: "files",
+    boolean: "debug",
+    alias: {
+        debug: "d"
+    }
+};
+
+var cliArguments = minimist(process.argv.slice(2), cliOptions);
+
+isDebug = Boolean(cliArguments.debug);
+
+function getFilesOptionFromCli(cliArgs) {
+    if (cliArgs.files) {
+        return cliArgs.files.split(/[,;]/);
+    }
+    
+    return [];
+}
+
+var filesOption = getFilesOptionFromCli(cliArguments);
 
 var jsUglifyOptions = {
     compress: {
@@ -76,7 +101,20 @@ var jsUglifyOptions = {
     }
 };
 
-gulp.task("tslint", function(){
+function getPathsForVisualsTests(paths) {
+    var includePaths = [];
+    
+    if (paths && paths.length > 0) {
+        includePaths.push("_references.ts");
+        includePaths = includePaths.concat(paths.map(function(path) {
+            return "visuals/" + path;
+        }));
+    }
+    
+    return includePaths;
+}
+
+gulp.task("tslint", function () {
     return gulp.src([
         "src/Clients/VisualsCommon/**/*.ts",
         "!src/Clients/VisualsCommon*/obj/*.*",
@@ -102,13 +140,20 @@ gulp.task("tslint", function(){
         .pipe(tslint.report("verbose"));
 });
 
-function buildProject(projectPath, outFileName) {
+function buildProject(projectPath, outFileName, includePaths) {
     var paths = [
-        projectPath + "/**/*.ts",
         "!" + projectPath + "/obj/**",
         "!" + projectPath + "/**/*.d.ts"
     ];
-
+    
+    if (includePaths && includePaths.length > 0) {
+        paths = paths.concat(includePaths.map(function (path) {
+            return projectPath + "/" + path;
+        }));
+    } else {
+        paths.push(projectPath + "/**/*.ts");
+    }
+    
     var tscReluts = gulp.src(paths)
         .pipe(ts({
             sortOutput: true,
@@ -144,11 +189,15 @@ gulp.task("build_visuals_sprite", function () {
 });
 
 gulp.task("build_visuals_less", function () {
-    return gulp.src("src/Clients/Visuals/styles/visuals.less")
+    var css = gulp.src("src/Clients/Visuals/styles/visuals.less")
         .pipe(less())
-        .pipe(minifyCSS())
-        .pipe(rename("visuals.min.css"))
-        .pipe(gulp.dest("build/styles"));
+        .pipe(rename("visuals.css"));
+        
+    if (!isDebug) {
+        css = css.pipe(minifyCSS());
+    }
+    
+    return css.pipe(gulp.dest("build/styles"));
 });
 
 gulp.task("build_visuals_project", function () {
@@ -160,16 +209,39 @@ gulp.task("build_visuals", function (callback) {
 });
 
 gulp.task("build_visuals_tests", function () {
-    return buildProject("src/Clients/PowerBIVisualsTests", "PowerBIVisualsTests");
+    return buildProject(
+        "src/Clients/PowerBIVisualsTests",
+        "PowerBIVisualsTests",
+        getPathsForVisualsTests(filesOption));
 });
 
-gulp.task("copy_dependencies_visuals_playground", function () {
+gulp.task("copy_internal_dependencies_visuals_playground", function () {
+    var src = [];
+    
+    if (isDebug) {
+        src.push("src/Clients/PowerBIVisualsPlayground/obj/PowerBIVisualsPlayground.js");
+    } else {
+        src.push("src/Clients/PowerBIVisualsPlayground/obj/PowerBIVisualsPlayground.min.js");
+    }
+    
+    return gulp.src(src)
+        .pipe(rename("PowerBIVisualsPlayground.js"))
+        .pipe(gulp.dest("src/Clients/PowerBIVisualsPlayground"))
+});
+
+gulp.task("copy_external_dependencies_visuals_playground", function () {
     return gulp.src([
-        "build/scripts/powerbi-visuals.all.min.js",
-        "build/styles/visuals.min.css",
-        "src/Clients/PowerBIVisualsPlayground/obj/PowerBIVisualsPlayground.js"
+        "build/scripts/powerbi-visuals.all.js",
+        "build/styles/visuals.css"
     ])
         .pipe(gulp.dest("src/Clients/PowerBIVisualsPlayground"));
+});
+
+gulp.task("copy_dependencies_visuals_playground", function (callback) {
+    runSequence(
+        "copy_internal_dependencies_visuals_playground",
+        "copy_external_dependencies_visuals_playground",
+        callback);
 });
 
 gulp.task("build_visuals_playground_project", function () {
@@ -190,6 +262,7 @@ gulp.task("combine_internal_js", function () {
         "src/Clients/Visuals/obj/Visuals.js"
     ])
         .pipe(concat("powerbi-visuals.js"))
+        .pipe(gulp.dest("build/scripts"))
         .pipe(uglify("powerbi-visuals.min.js", jsUglifyOptions))
         .pipe(gulp.dest("build/scripts"));
 });
@@ -216,11 +289,18 @@ gulp.task("combine_external_js", function () {
 });
 
 gulp.task("combine_all", function () {
-    return gulp.src([
-        "build/scripts/externals.min.js",
-        "build/scripts/powerbi-visuals.min.js",
-    ])
-        .pipe(concat("powerbi-visuals.all.min.js"))
+    var src = [
+        "build/scripts/externals.min.js"
+    ];
+    
+    if (isDebug) {
+        src.push("build/scripts/powerbi-visuals.js");
+    } else {
+        src.push("build/scripts/powerbi-visuals.min.js");
+    }
+    
+    return gulp.src(src)
+        .pipe(concat("powerbi-visuals.all.js"))
         .pipe(gulp.dest("build/scripts"));
 });
 
@@ -264,36 +344,60 @@ gulp.task("build", function (callback) {
  * Tests.
  */
 
-gulp.task("copy_dependencies_visuals_tests", function () {
+gulp.task("copy_internal_dependencies_visuals_tests", function () {
+    var src = [];
+    
+    if (isDebug) {
+        src.push("src/Clients/PowerBIVisualsTests/obj/PowerBIVisualsTests.js");
+    } else {
+        src.push("src/Clients/PowerBIVisualsTests/obj/PowerBIVisualsTests.min.js");
+    }
+    
+    return gulp.src(src)
+        .pipe(rename("powerbi-visuals-tests.js"))
+        .pipe(gulp.dest("VisualsTests"));
+});
+
+gulp.task("copy_external_dependencies_visuals_tests", function () {
     return gulp.src([
-        "build/scripts/powerbi-visuals.all.min.js",
-        "src/Clients/PowerBIVisualsTests/obj/PowerBIVisualsTests.js"
+        "build/scripts/powerbi-visuals.all.js"
     ])
         .pipe(gulp.dest("VisualsTests"));
 });
 
+gulp.task("copy_dependencies_visuals_tests", function (callback) {
+    runSequence(
+        "copy_internal_dependencies_visuals_tests",
+        "copy_external_dependencies_visuals_tests",
+        callback
+    );
+});
+
 gulp.task("run_tests", function () {
     return gulp.src([
-        "src/Clients/externals/ThirdPartyIP/JQuery/2.1.3/jquery.min.js",
-        "src/Clients/externals/ThirdPartyIP/D3/d3.min.js",
+        "VisualsTests/powerbi-visuals.all.js",
+        
         "src/Clients/externals/ThirdPartyIP/JasmineJQuery/jasmine-jquery.js",
-        "src/Clients/externals/ThirdPartyIP/LoDash/lodash.min.js",
-        "src/Clients/externals/ThirdPartyIP/GlobalizeJS/globalize.min.js",
         "src/Clients/externals/ThirdPartyIP/MomentJS/moment.min.js",
         "src/Clients/externals/ThirdPartyIP/Velocity/velocity.min.js",
         "src/Clients/externals/ThirdPartyIP/Velocity/velocity.ui.min.js",
         "src/Clients/externals/ThirdPartyIP/QuillJS/quill.min.js",
-
-        "VisualsTests/powerbi-visuals.all.min.js",
-        "VisualsTests/PowerBIVisualsTests.js"
+        
+        "VisualsTests/powerbi-visuals-tests.js"
     ])
         .pipe(jasmineBrowser.specRunner({console: true}))
         .pipe(jasmineBrowser.headless());
 });
 
+gulp.task("run_performance_tests", function (callback) {
+    filesOption.push("performance/performanceTests.ts");
+    
+    runSequence("test", callback);
+});
+
 gulp.task("test", function (callback) {
     runSequence(
-        "build_projects",
+        "build",
         "dependencies",
         "copy_dependencies_visuals_tests",
         "run_tests",
@@ -335,15 +439,6 @@ gulp.task("gendocs", function (callback) {
 });
 
 /**
- * Push deploy to gh-pages
- */
-
-gulp.task('deploy', function () {
-    return gulp.src("./docs/**/*")
-        .pipe(deploy())
-});
-
-/**
  * Git tasks.
  */
 // Run git pull
@@ -382,7 +477,7 @@ gulp.task('checkout_gh_pages', function () {
         if (!exists) {
             console.log('cloning the repo/gh-pages into .docs');
               //return run("git clone https://github.com/.../test_hub --branch gh-pages --single-branch .docs").exec() 
-    		 //.pipe(gulp.dest('output')); 
+             //.pipe(gulp.dest('output')); 
         }
         else {
            return console.log('gh-pages repo exists in .docs folder.');
@@ -391,7 +486,7 @@ gulp.task('checkout_gh_pages', function () {
 });
 
 gulp.task('pull_gh_pages', function () {
-	exec('git -C .docs pull', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);});
+    exec('git -C .docs pull', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);});
     //return  run("git -C .docs pull").exec().pipe(gulp.dest('../output'));
 });
 
@@ -406,51 +501,51 @@ gulp.task('add_all_gh_pages', function (cb) {
   exec('git -C .docs add --all', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
 });
 
-var del = require('del');
+
    var doCommit = false;
 //logCapture = require('gulp-log-capture');
 gulp.task('commit_gh_pages', function (callback) {
 
 
-	exec('git -C .docs status > node_modules/statuscheck.txt', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);});
+    exec('git -C .docs status > node_modules/statuscheck.txt', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);});
 
 setTimeout(function() {
 
   fs.readFile("node_modules/statuscheck.txt", "utf-8", function(err, _data) {
-      	doCommit = _data.indexOf('nothing to commit')<0;
-	
-	del(['node_modules/statuscheck.txt'], function (err, paths) {
-	    //console.log('Deleted files/folders:\n', paths.join('\n'));
-		});
-		//console.log('Original git message: \n '+_data+ '\n end of original git message');
-		if(err)
-			console.log('Command exec ERROR: \n '+err);
+        doCommit = _data.indexOf('nothing to commit')<0;
+    
+    del(['node_modules/statuscheck.txt'], function (err, paths) {
+        //console.log('Deleted files/folders:\n', paths.join('\n'));
+        });
+        //console.log('Original git message: \n '+_data+ '\n end of original git message');
+        if(err)
+            console.log('Command exec ERROR: \n '+err);
 
-console.log(doCommit);
-	if(doCommit){
-		 console.log('Commiting changes');
-		exec('git -C .docs commit -m \'automatic-documentation-update\'', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);callback(err);});
+    if(doCommit){
+         console.log('Commiting changes');
+        exec('git -C .docs commit -m \'automatic-documentation-update\'', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);callback(err);});
   }
-	else
-	{
-	 console.log('Nothing to commit');
-	 return true;
-	}
+    else
+    {
+     console.log('Nothing to commit');
+     return true;
+    }
 
     });
-	
+    
 }, 10000);
- // return false;			 
+ // return false;            
 });
 
 gulp.task('push_gh_pages', function (cb) {
-	exec('git -C .docs push', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
+    exec('git -C .docs push', function (err, stdout, stderr) {console.log(stdout);console.log(stderr);cb(err);});
 });
 
 gulp.task('git_update_gh_pages', function(cb) {
     runSequence('pull_rebase',"build_projects","combine_internal_d_ts",'checkout_gh_pages', 'pull_gh_pages'
-    	, "createdocs", 'copy_docs','add_all_gh_pages','commit_gh_pages', 'push_gh_pages',cb);
+        , "createdocs", 'copy_docs','add_all_gh_pages','commit_gh_pages', 'push_gh_pages',cb);
 });
+
 
 /**
  * Default task

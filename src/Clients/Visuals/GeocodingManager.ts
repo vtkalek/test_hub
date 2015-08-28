@@ -90,7 +90,7 @@ module powerbi.visuals {
                 m10: 0, m11: 1, m12: 0,
             };
         }
-
+        
         // Methods
         public applyToPoint(point: IPoint): IPoint {
             if (!point) {

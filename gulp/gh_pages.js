@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var fs = require("fs");
 var git = require('gulp-git');
 var exec = require('child_process').exec;
+var del = require('del');
 
 gulp.task('pull_rebase', function () {
     return  git.pull('origin', 'master', {args: '--rebase'}, function (err) {

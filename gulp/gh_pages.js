@@ -4,6 +4,28 @@ var fs = require("fs");
 var git = require('gulp-git');
 var exec = require('child_process').exec;
 var del = require('del');
+var typedoc = require("gulp-typedoc");
+
+gulp.task("createdocs", function () {
+    return gulp
+        .src([
+            "src/Clients/Visuals/**/*.ts",
+            "!src/Clients/Visuals*/obj/*.*"
+        ])
+        .pipe(typedoc({
+            // Output options (see typedoc docs)
+            target: "ES5",
+            //includeDeclarations: true,
+            mode: "file",
+            // TypeDoc options (see typedoc docs)
+            out: "docs",
+            json: "docs/to/file.json",
+            // TypeDoc options (see typedoc docs)
+            name: "PowerBI-Visuals",
+            ignoreCompilerErrors: true,
+            version: true,
+        }));
+});
 
 gulp.task('pull_rebase', function () {
     return  git.pull('origin', 'master', {args: '--rebase'}, function (err) {

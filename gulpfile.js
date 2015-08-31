@@ -315,56 +315,6 @@ gulp.task("copy_internal_dependencies_visuals_playground", function () {
         .pipe(rename("PowerBIVisualsPlayground.js"))
         .pipe(gulp.dest("src/Clients/PowerBIVisualsPlayground"))
 });
-/* --------------------------- BUILD SEQUENCIES ---------------------------------- */
-gulp.task("build_visuals", function (callback) {
-    runSequence("build_visuals_project", "build_visuals_sprite", "build_visuals_less", callback);
-});
-
-gulp.task("build_projects", function (callback) {
-    runSequence(
-        "build_visuals_common",
-        "build_visuals_data",
-        "build_visuals",
-        "combine_internal_js",
-        "combine_external_js",
-        //"combine_all",
-        "build_visuals_playground",
-        callback);
-});
-
-//TODO: delete if it is not used.
-gulp.task("build_combine", function (callback) {
-    runSequence(
-        "tslint",
-//         "combine_internal_js",
-//         "combine_external_js",
-        // "combine_all",
-        "build_visuals_playground_project",
-        callback);
-});
-
-gulp.task("build_visuals_playground", function (callback) {
-    runSequence(
-        "build_visuals_playground_project",
-        "copy_internal_dependencies_visuals_playground",
-        callback);
-});
-
-gulp.task('build', function (callback) {
-    runSequence(
-        "tslint",
-        "build_projects",
-        callback);
-});
-
-gulp.task('build_debug', function (callback) {
-    isDebug = true;
-    runSequence(
-        "build_projects",
-        callback);
-});
-
-gulp.task('default', ['build_debug']);
 
 /* --------------------------- WATCHERS ---------------------------------- */
 var lintErrors = false;
@@ -613,38 +563,5 @@ gulp.task("test", function (callback) {
         "combine_all",
         "copy_dependencies_visuals_tests",
         "run_tests",
-        callback);
-});
-
-/**
- * Type DOC.
- */
-
-gulp.task("createdocs", function () {
-    return gulp
-        .src([
-            "src/Clients/Visuals/**/*.ts",
-            "!src/Clients/Visuals*/obj/*.*"
-        ])
-        .pipe(typedoc({
-            // Output options (see typedoc docs)
-            target: "ES5",
-            //includeDeclarations: true,
-            mode: "file",
-            // TypeDoc options (see typedoc docs)
-            out: "docs",
-            json: "docs/to/file.json",
-            // TypeDoc options (see typedoc docs)
-            name: "PowerBI-Visuals",
-            ignoreCompilerErrors: true,
-            version: true,
-        }));
-});
-
-gulp.task("gendocs", function (callback) {
-    runSequence(
-        "build",
-        "combine_internal_d_ts",
-        "createdocs",
         callback);
 });
